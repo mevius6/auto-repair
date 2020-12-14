@@ -1,0 +1,8 @@
+mixin imageComparison(props)
+  .comparison
+    picture.comparison__image
+      source(srcset=`./images/${props.imageB}.webp` type="image/webp")
+      img(src=`./images/${props.imageB}.jpg` alt="" title="" loading="lazy")
+    picture.comparison__image
+      source(srcset=`./images/${props.imageA}.webp` type="image/webp")
+      img(src=`./images/${props.imageA}.jpg` alt="" title="" loading="lazy")

@@ -1,0 +1,38 @@
+mixin card(props)
+  - let className = 'card'
+  - let attrs = {}
+  - let style = props.style ? ` ${className}--${props.style}` : ''
+  - let view = props.view ? ` ${className}--${props.view}` : ''
+  - attrs.class = className + style + view
+
+  article&attributes(attrs)
+    .card__container
+      if props.media
+        .card__image-wrapper
+          picture.card__image
+            source(data-srcset="" type="image/webp")
+            img(data-src="" alt="" title="" loading="lazy")
+      if props.icon
+        .card__image(data-icon style={
+          'background-image': `var(--${props.icon})`
+        })
+      .card__text-wrapper.flow
+        header.card__header
+          if props.view === 'compact'
+            | #[h4.card__subhead= props.head]
+          else
+            | #[h2.card__headline= props.head]
+        p.card__body
+          if !props.sink
+            | #{props.body}
+          else
+            block
+        if props.action
+          footer.card__footer
+            time.card__date(datetime="")
+            +cta({
+              base: 'card',
+              type: 'anchor',
+              text: 'Посмотреть',
+              link: props.link
+            })

@@ -1,0 +1,36 @@
+// ? .side-fade
+@mixin side-fade($size: 20) {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    // inline-size: calc(var(--side-fade) * 1px);
+    inline-size: $size * 1px;
+    height: 100%;
+    content: '';
+    background: var(--bg-image);
+  }
+
+  &::before {
+    --bg-image:
+      linear-gradient(
+        to left,
+        hsl(0 0% 95.7% / 0),
+        var(--background)
+      );
+    left: 0;
+  }
+
+  &::after {
+    --bg-image:
+      linear-gradient(
+        to right,
+        hsl(0 0% 95.7% / 0),
+        var(--background)
+      );
+    right: 0;
+  }
+}

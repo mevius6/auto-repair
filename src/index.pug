@@ -1,0 +1,250 @@
+extends ./pug/page
+
+append head
+  //- link(rel="preconnect" href="https://www.datocms-assets.com" crossorigin)
+  link(rel="preconnect" href="https://api.mapbox.com" crossorigin)
+  script(async src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js")
+
+block vars
+  - let page = appData.pages.index;
+  -
+    const offers = [
+      {
+        'title': 'Покраска авто с гарантией',
+        'field': 'Целый авто за неделю, один элемент — 2-3 дня.',
+      }, {
+        'title': 'Покраска каждого второго элемента — бесплатно',
+        'field': 'Целый авто за неделю, один элемент — 2-3 дня.',
+      },
+    ]
+  -
+    const advantages = [
+      {
+        'title': 'Бесплатная эвакуация',
+        'text': 'Предоставляем бесплатный эвакуатор в черте города при условии ремонта авто в нашем сервисном центре.',
+        'icon': 'location'
+      }, {
+        'title': 'Быстрое оформление',
+        'text': 'Не утомляем бумажной волокитой. Оформление не займёт более 15 минут.',
+        'icon': 'speed'
+      }, {
+        'title': 'Ремонт в кредит',
+        'text': 'Кузовной ремонт и окраска автомобилей в рассрочку или кредит на выгодных условиях.',
+        'icon': 'discount'
+      }, {
+        'title': 'СМС-уведомления',
+        'text': 'Оперативно информируем вас о статусе работ с вашим автомобилем.',
+        'icon': 'mobile'
+      },
+    ]
+  -
+    const guarantees = [
+      {
+        'title': 'Стапель для кузовного ремонта',
+        'text': 'Восстанавливаем геометрию кузова на стапеле с сохранением заводских контрольных точек.',
+        'icon': 'car'
+      }, {
+        'title': '2 покрасочные камеры',
+        'text': 'Наши камеры оснащены многоступенчатой системой фильтров, качественной вытяжкой и системой рециркуляции воздуха.',
+        'icon': 'aero'
+      }, {
+        'title': 'Колерная лаборатория',
+        'text': 'Осуществляем подбор колера всех типов автоэмалей. Гарантируем точное совпадение с цветом заводского покрытия.',
+        'icon': 'colours'
+      },
+    ]
+  -
+    const reviews = [
+      {
+        'rating': '5',
+        'title': 'Honda Accord',
+        'text': 'Хочу сказать спасибо Андрею, Владимиру и остальным ребятам которые восстановили нашу машинку, за их отличный подход к ситуации.',
+        'date': '10.12.20',
+        'user': {
+          'name': 'Михаил Иванов',
+          'avatar': './images/avatars/1.png',
+        },
+      }, {
+        'rating': '5',
+        'title': 'Hyundai Creta',
+        'text': 'Всегда на связи и всё доходчиво объясняли. Спасибо вам большое за ваше терпение и обслуживание, рекомендую всем кузовной центр «Рус-Авто».',
+        'date': '11.11.20',
+        'user': {
+          'name': 'Максим Дмитриев',
+          'avatar': './images/avatars/2.png',
+        },
+      }, {
+        'rating': '5',
+        'title': 'Honda Accord',
+        'text': 'Хочу сказать спасибо Андрею, Владимиру и остальным ребятам которые восстановили нашу машинку, за их отличный подход к ситуации.',
+        'date': '11.10.20',
+        'user': {
+          'name': 'Дмитрий Сергеев',
+          'avatar': './images/avatars/3.png',
+        },
+      }, {
+        'rating': '5',
+        'title': 'Hyundai Creta',
+        'text': 'Всегда на связи и всё доходчиво объясняли. Спасибо вам большое за ваше терпение и обслуживание, рекомендую всем кузовной центр «Рус-Авто».',
+        'date': '10.09.20',
+        'user': {
+          'name': 'Владимир Донцов',
+          'avatar': './images/avatars/4.png',
+        },
+      },
+    ]
+  - const count = arr => arr.length
+
+block content
+  section(data-id="hero")
+    +slides({
+      name: 'slides--1',
+      data: offers,
+      count: true
+    })
+
+  .grid
+    ul.container
+      li
+        | #[span.num 12]
+        | Лет стабильной работы
+      li
+        | #[span.num 3479]
+        | Окрашенных автомобилей
+      li
+        | #[span.num 5196]
+        | Выполненных работ
+
+    .container
+      h3.headline#cardsLabel1
+        | Преимущества работы с нами
+      section.cards(aria-labelledby="#cardsLabel1")
+        each advantage in advantages
+          +card({
+            view: 'compact',
+            head: advantage.title,
+            body: advantage.text,
+            icon: advantage.icon
+          })
+
+    .container
+      h3.headline#sectionHeader1
+        | Полный спектр услуг
+      section(aria-labelledby="#sectionHeader1")
+        div(style={ '--side-fade': 120 })
+          picture
+            source(srcset="./images/car.png" type="image/png")
+            img(src="./images/car.png" alt="Автомобиль" title="" loading="lazy")
+        div
+          ul
+            li
+              | Покраска автомобиля
+            li
+              | Локальная покраска
+            li
+              | Полировка кузова
+            li
+              | Замена и полировка стёкол
+            li
+              | Полировка фар
+          ul
+            li
+              | Кузовной ремонт
+            li
+              | Восстановление геометрии кузова
+            li
+              | Ремонт пластиковых деталей
+            li
+              | Сварочное работы
+
+    .container
+      - let logos = 20
+      .carousel(
+        data-id="logos"
+        style={ '--columns': logos }
+      )
+        each logo in Array(logos)
+          .item
+
+    .container
+      h3.headline#cardsLabel2
+        | Гарантия высокого качества
+      p.desc
+        | Современное оборудование и материалы, рекомендуемые ведущими производителями.
+      section.cards(aria-labelledby="#cardsLabel2")
+        each guarantee in guarantees
+          +card({
+            view: 'compact',
+            head: guarantee.title,
+            body: guarantee.text,
+            icon: guarantee.icon
+          })
+
+    .container
+      section(aria-labelledby="#sectionHeader2")
+        h3.headline#sectionHeader2
+          | Оценка ремонта по фото
+        ul
+          //- li(data-icon="✓")
+          li
+            | #[a(href="tel:+79506862358") Сохраните наш номер +7 950 686-23-58]
+          li
+            | Найдите нас в WhatsApp
+          li
+            | Пришлите фото своего автомобиля
+          li
+            | Получите рассчёт стоимости и сроки выполнения работ
+        //- https://wa.me/79506862358
+        a.cta(
+          aria-label="Отправить сообщение WhatsApp"
+          href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
+        )
+          | Отправить фото!
+      picture
+        source(srcset="./images/hero/2.webp" type="image/webp")
+        img(src="./images/hero/2.jpg" alt="" title="" loading="lazy")
+
+    .container
+      section(aria-labelledby="#sectionHeader3")
+        h3.headline#sectionHeader3
+          | Сейчас в работе
+        .vp-wrapper
+          iframe(src="https://rtsp.me/embed/AfKbB34A/" loading="lazy" width="600" height="400" frameborder="0" allowfullscreen)
+
+    .container
+      h3.headline#reviewsLabel
+        | Нас рекомендуют!
+      .column-wrapper
+        ul.carousel(
+          data-id="reviews"
+          style=`--columns: ${count(reviews)};`
+          aria-labelledby="#reviewsLabel"
+        )
+          each review, i in reviews
+            li.item(id=`review${i+1}`)
+              +review({
+                id: i+1,
+                title: review.title,
+                text: review.text,
+                date: review.date,
+                rating: review.rating,
+                avatar: review.user.avatar,
+                username: review.user.name,
+              })
+              //-
+                imageA: `./images/comparison/${i+1}-a`,
+                imageB: `./images/comparison/${i+1}-b`,
+      ul.carousel-control
+        each i in Array.from(Array(count(reviews)).keys())
+          li
+            input(type="radio" name="position")&attributes({
+              'checked': i === 0
+            })
+
+    .container
+      section(data-id="map")
+        #map
+
+block scripts
+  script(defer type="module" src="./js/map.js")
+  script(nomodule src="./js/map.js")

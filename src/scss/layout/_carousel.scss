@@ -1,0 +1,101 @@
+@use '../config';
+
+.carousel {
+  display: grid;
+  // min-inline-size: 100%;
+  min-block-size: 100%;
+  overflow-x: hidden;
+  background: var(--carousel-background, inherit);
+  align-items: center;
+  grid-template-columns:
+    repeat(
+      var(--columns),
+      minmax(var(--item-size), 1fr)
+    );
+  column-gap: inherit;
+  will-change: transform;
+
+  .item {
+    inline-size: var(--item-size);
+    block-size: var(--item-size);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &[data-id='logos'] {
+    --item-size: 3.5rem;
+    --carousel-background: var(--foreground);
+
+    padding: 60px;
+
+    @for $i from 1 through 20 {
+      .item:nth-child(#{$i}) {
+        background-image: url('../images/logos/#{$i}.svg');
+      }
+    }
+  }
+
+  &[data-id='reviews'] {
+    --min-col-size: 45ch;
+    --max-col-size: 65ch;
+
+    display: grid;
+    contain: content;
+    column-gap: var(--gutter);
+    grid-template-columns:
+      repeat(
+        var(--columns),
+        minmax(calc(var(--min-col-size) - var(--gutter) * 2), 1fr)
+      );
+    grid-template-rows: minmax(min-content, 1fr);
+
+    .item {
+      @include config.bg-images('avatars', 'png', 'avatar');
+      place-items: center;
+    }
+  }
+
+  &-control {
+    --dot-size: 1rem;
+
+    display: inline-flex;
+    column-gap: 0;
+    place-self: center;
+    grid-column: 1 / -1;
+
+    & > * + * { margin-inline-start: calc(var(--dot-size)); }
+
+    input[name='position'] {
+      --sx: 0.9;
+      --alpha: 0.5;
+
+      appearance: none;
+      flex: 0 0 auto;
+      inline-size: var(--dot-size);
+      block-size: var(--dot-size);
+      margin: 0;
+      cursor: pointer;
+      background-color: var(--foreground);
+      border-radius: 50%;
+      opacity: var(--alpha);
+
+      transition-timing-function: var(--timing);
+      transition-duration: 150ms;
+      transition-property: opacity, transform;
+      transform: scale(var(--sx));
+
+      &:hover {
+        --sx: 1;
+        --alpha: 0.75;
+      }
+
+      &:focus,
+      &:checked {
+        --sx: 0.8;
+        --alpha: 1;
+        outline: none;
+      }
+    }
+  }
+}

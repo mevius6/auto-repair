@@ -1,0 +1,53 @@
+@use 'sass:map';
+
+@mixin bg-images($subdir, $type: 'jpg', $selector: 'image') {
+  $subdir-prefix: '../images';
+  $subdir-list: (
+    'slides': (
+      1: '1',
+      2: '2',
+    ),
+    'avatars': (
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+    ),
+  );
+  $has-subdir: map.has-key($subdir-list, $subdir);
+
+  @if $has-subdir {
+    $opted-subdir: map.get($subdir-list, $subdir);
+
+    @each $index, $value in $opted-subdir {
+      $path: '#{$subdir-prefix}/#{$subdir}/#{$value}';
+
+      &:nth-of-type(#{$index}) [class$='#{$selector}'] {
+        // &:nth-of-type(#{$index}) {
+        // https://drafts.csswg.org/css-images-4/#funcdef-image-set
+        // background-image:
+        //   image-set(
+        //     '#{$path}.avif' type('image/avif'),
+        //     '#{$path}.webp' type('image/webp'),
+        //     '#{$path}.png' type('image/png')
+        //   );
+
+        .webp & {
+          background-image: url('#{$path}.webp');
+        }
+
+        .no-webp & {
+          @if $type == 'png' {
+            background-image: url('#{$path}.png');
+          }
+          @else {
+            background-image: url('#{$path}.jpg');
+          }
+        }
+      }
+    }
+  }
+  @else {
+    @error 'Подкаталог #{$subdir} отсутствует в #{$subdir-prefix}';
+  }
+}

@@ -1,0 +1,87 @@
+//- https://wicg.github.io/local-font-access/
+append vars
+  //-
+    let baseURL = 'https://fonts.googleapis.com/css2'
+    let CSS = `${baseURL}?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600`
+  -
+    let pathName = 'fonts'
+    let typeName = 'font'
+    let fontFaces = [
+      {
+        'fullName': 'SuisseScreen',
+        'varAxes': false
+      },
+    ]
+
+//- each fontFace in fontFaces
+  - let format = !fontFace.varAxes ? 'woff2' : 'woff2-variations'
+  link(
+    rel="preload"
+    href=`./${pathName}/${fontFace.fullName}.woff2` as=typeName
+    type=`${typeName}/${format}`
+    crossorigin
+  )
+
+//- https://drafts.csswg.org/css-fonts-4/#font-face-src-parsing
+style.
+  @font-face {
+    font-display: fallback;
+    font-family: SuisseScreen;
+    font-stretch: 100%;
+    font-style: normal;
+    font-synthesis: none;
+    font-weight: 400;
+    src:
+      local(SuisseScreen Monitor WebXL),
+      local(SuisseScreen-Monitor-WebXL),
+      url(./fonts/SuisseScreen-Monitor-WebXL.woff) format('woff');
+    }
+  @font-face {
+    font-display: fallback;
+    font-family: SuisseScreen;
+    font-stretch: 100%;
+    font-style: normal;
+    font-synthesis: none;
+    font-weight: 500;
+    src:
+      local(SuisseScreen Medium WebXL),
+      local(SuisseScreen-Medium-WebXL),
+      url(./fonts/SuisseScreen-Medium-WebXL.woff) format('woff');
+    }
+  @font-face {
+    font-display: fallback;
+    font-family: SuisseScreen;
+    font-stretch: 100%;
+    font-style: normal;
+    font-synthesis: none;
+    font-weight: 600;
+    src:
+      local(SuisseScreen SemiBold WebXL),
+      local(SuisseScreen-SemiBold-WebXL),
+      url(./fonts/SuisseScreen-SemiBold-WebXL.woff) format('woff');
+    }
+
+//- @font-face {
+    src:
+      url(./fonts/SuisseScreen-Monitor-WebXL.woff2) format('woff2'),
+      url(./fonts/SuisseScreen-Monitor-WebXL.woff) format('woff');
+    }
+
+//- Google Fonts
+  link(
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  )
+  link(
+    rel="preload"
+    as="style"
+    href=`${CSS}&display=swap`
+  )
+  link(
+    rel="stylesheet"
+    href=`${CSS}&display=swap`
+    media="print" onload="this.media='all'"
+  )
+  noscript
+    link(rel="stylesheet" href=`${CSS}&display=swap`)

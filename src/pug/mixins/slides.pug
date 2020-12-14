@@ -1,0 +1,50 @@
+mixin slides(props)
+  - let num = props.data.length
+  - let attrs = {}
+  - attrs.class = props.name
+
+  .slides&attributes(attrs)
+    .slides__container
+      each item, i in props.data
+        section.slides__slide.bg-image
+          //- let path = `./images/set1/${i+1}`
+          //- picture.slides__image
+            source(srcset=`${path}.avif` type="image/avif")
+            source(srcset=`${path}.webp` type="image/webp")
+            source(srcset=`${path}.jpg` type="image/jpeg")
+            img.parallax-image(
+              alt="..."
+              src=`${path}.jpg`
+              width="720" height="1080"
+              loading="lazy"
+            )
+          article.slides__text
+            h2.headline
+              | #{item.title}
+            if Array.isArray(item.field)
+              each subitem in item.field
+                if subitem.lead
+                  p.body
+                    | #{subitem.lead}
+                if subitem.listTitle
+                  +list({
+                    title: subitem.listTitle,
+                    items: subitem.listItems,
+                    ordered: false
+                  })
+                else
+                  +list({
+                    items: subitem.listItems,
+                    ordered: false
+                  })
+            else
+              p.body
+                | #{item.field}
+    if props.count
+      .slides__counter
+        .slides__counter-current.num= 1
+        .slides__counter-max= num
+    .slides__control
+      //- &larr; &rarr;
+      button(aria-label="Предыдущий").prev
+      button(aria-label="Следующий").next

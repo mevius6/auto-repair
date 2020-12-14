@@ -1,0 +1,46 @@
+@use '../config';
+
+button {
+  position: relative;
+  display: inline-flex;
+  min-block-size: 44px; // 2.75rem
+  padding: 1ch 2ex; // 0.5rem
+  overflow: hidden;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--btn-text-color, var(--foreground));
+  background: var(--btn-background, var(--background));
+  border-radius: var(--btn-border-radius, 8px); // 0.5rem
+  box-shadow: 0 8px 24px var(--shadow);
+  transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out;
+  align-items: center;
+  justify-content: space-around;
+
+  &:is(:hover, :focus) {
+    text-decoration: none;
+    outline: none;
+  }
+
+  &:active:not([disabled]) {
+    box-shadow: 0 0 0 var(--shadow);
+    transform: translateY(1px);
+  }
+
+  &[class$='cta'] {
+    @include config.directional-clipping();
+
+    box-shadow: var(--foreground) 0 0 0 1px inset;
+  }
+
+  &[disabled] {
+    background-image:
+      repeating-linear-gradient(
+        -24deg,
+        transparent,
+        transparent 4px,
+        hsl(var(--accent)) 0,
+        hsl(var(--accent)) 5px
+      );
+    box-shadow: hsl(var(--accent)) 0 0 0 0.5px inset;
+  }
+}

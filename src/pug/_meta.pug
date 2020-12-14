@@ -1,0 +1,57 @@
+-
+  let canonicalURL = (page.title[0] != '')
+    ? appData.meta.domain + page.path[1]
+    : appData.meta.domain;
+-
+  let promoImage = `
+  ${appData.meta.domain}/ogp_${page.title[0] != '' ? page.id : 'common'}.jpg`;
+-
+  let titleMerge = (page.title[0] != '')
+    ? `${page.title[0]} │ ${appData.meta.name}`
+    : appData.meta.name;
+-
+  let keywordsMerge = (page.keywords != '')
+    ? `${page.keywords}, ${appData.meta.keywords}`
+    : appData.meta.keywords;
+-
+  let titleSEO = (page.title[1] != '')
+    ? page.title[1]
+    : titleMerge;
+
+meta(charset="utf-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
+meta(name="viewport" content="width=device-width, initial-scale=1.0")
+title= titleSEO
+
+meta(name="description", content= page.description)
+meta(name="keywords", content= keywordsMerge)
+
+meta(name="apple-mobile-web-app-capable" content="yes")
+meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+
+meta(property="og:title" content= titleMerge)
+meta(property="og:site_name" content= appData.meta.name)
+meta(property="og:type" content="website")
+meta(property="og:image" content= promoImage)
+meta(property="og:description" content= page.description)
+meta(property="og:url" content="")
+
+meta(name="twitter:card" content="summary")
+meta(name="twitter:title" content= titleMerge)
+meta(name="twitter:description" content= page.description)
+meta(name="twitter:image" content= promoImage)
+
+//-
+  link(rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png")
+  link(rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png")
+  link(rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png")
+  link(rel="icon" type="image/svg+xml" href="./favicon.svg")
+  link(rel="mask-icon" href="./favicon.svg" color="#f4f4f4")
+  link(rel="alternate icon" href="./favicon.ico")
+link(
+  rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23111111%22></rect><path d=%22M50.44 58.22L37.21 58.22L37.21 81.99L26.09 81.99L26.09 18.01L50.57 18.01Q61.29 18.01 67.60 23.59Q73.91 29.17 73.91 38.35L73.91 38.35Q73.91 47.76 67.73 52.99Q61.56 58.22 50.44 58.22L50.44 58.22ZM37.21 26.97L37.21 49.30L50.57 49.30Q56.50 49.30 59.62 46.51Q62.74 43.72 62.74 38.44L62.74 38.44Q62.74 33.26 59.58 30.16Q56.42 27.06 50.88 26.97L50.88 26.97L37.21 26.97Z%22 fill=%22%23f81717%22></path></svg>"
+)
+link(rel="manifest" href="./site.webmanifest")
+meta(name="msapplication-TileColor" content="#001f3d")
+meta(name="theme-color" content="#f4f4f4")
+meta(name="color-scheme" content="dark light")

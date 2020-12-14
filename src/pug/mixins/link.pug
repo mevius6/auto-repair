@@ -1,0 +1,19 @@
+mixin link(props)
+  if props.tel
+    a(
+      class=`${props.base}__link`
+      href=`tel:${props.tel}`
+    )
+      span(class=`${props.base}__link-text`)
+        | #{props.tel}
+  if props.mail
+    a(
+      class=`${props.base}__link`
+      href=`mailto:${props.mail}?subject=${props.subject}&body=${props.body}`
+    )
+      span(class=`${props.base}__link-text`)
+        | #{props.mail}
+  else
+    a(href= props.link)
+      span(class=`${props.base}__link-text`)
+        | #{props.text}

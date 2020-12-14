@@ -1,0 +1,179 @@
+@use 'config';
+
+:root {
+  // https://websemantics.uk/tools/responsive-font-calculator/
+  // 16—24px
+  font-size: clamp(1rem, calc(1rem + ((1vw - 0.48rem) * 0.6944)), 1.5rem);
+}
+
+body {
+  --px2rem: calc((var(--px-size) / 16) * 1rem);
+
+  // system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    SuisseScreen,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Helvetica Neue,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol;
+  font-size: var(--px2rem);
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+
+  @include config.respond('retina') {
+    & {
+      /* autoprefixer: off */
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+
+p,
+li,
+h2,
+h3,
+h4 {
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+p { hyphens: auto; }
+
+h1,
+h2,
+h3,
+h4 {
+  --px2rem: calc((var(--px-size) / 16) * 1rem);
+  font-size: var(--px2rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+// https://www.w3.org/TR/css-inline-3/#line-height
+h1 {
+  text-edge: cap alphabetic;
+  leading-trim: both;
+}
+
+h2 {
+  --px-size: 32;
+  line-height: calc(1ex / 0.42);
+}
+
+h3 {
+  --px-size: 26;
+  line-height: calc(1ex / 0.38);
+}
+
+h4 {
+  --px-size: 22;
+  line-height: calc(1ex / 0.37);
+}
+
+.num {
+  --px-size: 48;
+  --px2rem: calc((var(--px-size) / 16) * 1rem);
+
+  font-size: var(--px2rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+article {
+  // 60-75ch
+  max-inline-size: 60ch;
+
+  h2,
+  h3,
+  h4 {
+    // 30-40ch
+    max-inline-size: 30ch;
+  }
+
+  p,
+  li {
+    --px-size: 16;
+    max-inline-size: 100%;
+    line-height: calc(1ex / 0.32);
+  }
+}
+
+@supports (font-size-adjust: 1) {
+  article {
+    font-size-adjust: 0.5;
+  }
+}
+
+// [class$='logo'] {}
+[class$='title'] {
+  font-weight: 400;
+  line-height: 1;
+}
+
+[class*='headline'] { font-weight: 600; }
+
+[class$='subhead'] { font-weight: 500; }
+
+[class$='body'] { font-weight: 400; }
+
+[class$='link'] { font-weight: 500; }
+
+[class$='link'],
+[class*='cta'] {
+  // @include config.typeset('sans');
+}
+
+[href*='tel'],
+[type*='tel'] {
+  font-feature-settings: 'case' 1;
+}
+
+.price {
+  font-variant-numeric: tabular-nums;
+  // font-feature-settings: 'tnum' 1, 'zero' 1, 'case' 1;
+}
+
+time { font-feature-settings: 'case' 1; }
+
+@include config.respond('tablet') {
+  .num {
+    // --px-size: 64;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h2 {
+    --px-size: 54; // 40;
+    line-height: calc(1ex / 0.42);
+
+    .slides__text & {
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  h3 {
+    --px-size: 32;
+    line-height: calc(1ex / 0.42);
+  }
+
+  h4 {
+    --px-size: 24;
+    line-height: calc(1ex / 0.37);
+  }
+}
+
+.has-dropcap::first-letter {
+  float: left;
+  margin: 0.1em 0.1em 0.2em 0;
+  font-size: 6rem;
+  font-weight: 500;
+  line-height: 0.65;
+}

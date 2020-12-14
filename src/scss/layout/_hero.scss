@@ -1,0 +1,15 @@
+@use '../config';
+
+[data-id='hero'] {
+  .cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    inline-size: 100vw;
+    block-size: 100vh;
+    object-fit: cover;
+    // filter: opacity(0.8);
+  }
+
+  .title { pointer-events: none; }
+}

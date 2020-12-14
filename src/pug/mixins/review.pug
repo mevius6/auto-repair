@@ -1,0 +1,76 @@
+mixin review(props)
+  article.review(
+    itemprop="review"
+    itemscope
+    itemtype="https://schema.org/Review"
+  )
+    //- https://schema.org/AutoRepair
+    div(
+      itemprop="itemReviewed"
+      itemscope
+      itemtype="https://schema.org/AutoRepair"
+      data-hidden
+    )
+      img(
+        itemprop="image"
+        src=`${appData.meta.domain}/common.jpg`
+        alt="Малярно-кузовной цех"
+      )
+      span(itemprop="name") Малярно-кузовной цех «Рус-Авто»
+      span(itemprop="priceRange") ₽₽₽
+      span(itemprop="telephone") +7 950 686-23-58
+      span(itemprop="address") ул. Германа, 21а, заезд с ул. Октябрьская
+
+      //- div(itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates")
+        meta(itemprop="latitude" content="58.531300")
+        meta(itemprop="longitude" content="31.259243")
+
+    header.review__header(data-hidden)
+      meta(itemprop="datePublished" content= props.date)
+      form(
+        itemprop="reviewRating"
+        itemscope
+        itemtype="https://schema.org/Rating"
+      )
+        fieldset.rating-wrapper
+          legend(data-hidden)
+            | Рейтинг: #[span(itemprop="ratingValue") #{props.rating}]
+          if props.stars
+            .rating
+              each val, i in Array(5)
+                input(type="radio" name="rating" id=i+1 value=i+1)&attributes({
+                  'checked': props.rating.includes(i+1)
+                })
+                label.rating__star(for=i+1)
+
+    +imageComparison({
+      imageA: `comparison/${props.id}-a`,
+      imageB: `comparison/${props.id}-b`,
+    })
+
+    blockquote.review__content
+      h4.review__subhead(itemprop="name")= props.title
+      p.review__lead(itemprop="reviewBody")= props.text
+    footer.review__footer
+      span.review__author
+        //- .review__avatar(style=`background-image: url('${props.avatar}')`)
+        .review__author-avatar
+        .review__author-name(
+          itemprop="author"
+          itemscope
+          itemtype="https://schema.org/Person"
+        )
+          span(itemprop="name") #{props.username}
+      if props.link
+        cite.review__cite(
+          itemprop="publisher"
+          itemscope
+          itemtype="https://schema.org/Organization"
+        )
+          //- meta(itemprop="name" content="Tripadvisor")
+          a(
+            href= props.link
+            target="_blank"
+            rel="noopener noreferrer"
+          )
+            span(itemprop="name") Tripadvisor
