@@ -1,7 +1,6 @@
 extends ./pug/page
 
 append head
-  //- link(rel="preconnect" href="https://www.datocms-assets.com" crossorigin)
   link(rel="preconnect" href="https://api.mapbox.com" crossorigin)
   script(async src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js")
 
@@ -98,7 +97,7 @@ block vars
 block content
   section(data-id="hero")
     +slides({
-      name: 'slides--1',
+      name: 'slides',
       data: offers,
       count: true
     })
@@ -185,7 +184,6 @@ block content
         h3.headline#sectionHeader2
           | Оценка ремонта по фото
         ul
-          //- li(data-icon="✓")
           li
             | #[a(href="tel:+79506862358") Сохраните наш номер +7 950 686-23-58]
           li
@@ -194,7 +192,6 @@ block content
             | Пришлите фото своего автомобиля
           li
             | Получите рассчёт стоимости и сроки выполнения работ
-        //- https://wa.me/79506862358
         a.cta(
           aria-label="Отправить сообщение WhatsApp"
           href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
@@ -231,9 +228,6 @@ block content
                 avatar: review.user.avatar,
                 username: review.user.name,
               })
-              //-
-                imageA: `./images/comparison/${i+1}-a`,
-                imageB: `./images/comparison/${i+1}-b`,
       ul.carousel-control
         each i in Array.from(Array(count(reviews)).keys())
           li
