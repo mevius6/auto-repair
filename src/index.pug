@@ -133,7 +133,12 @@ block content
         div(style={ '--side-fade': 120 })
           picture
             source(srcset="./images/car.png" type="image/png")
-            img(src="./images/car.png" alt="Автомобиль" title="" loading="lazy")
+            img(
+              src="./images/car.png"
+              alt="Автомобиль" title=""
+              width="600" height="400"
+              loading="lazy"
+            )
         div
           ul
             li
