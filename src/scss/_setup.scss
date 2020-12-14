@@ -52,7 +52,7 @@
 
   // https://drafts.csswg.org/css-color-adjust/#color-scheme-prop
   // https://drafts.csswg.org/css-color-adjust-1/#color-schemes
-  color-scheme: dark light;
+  color-scheme: dark;
 
   &:not([data-theme-style]) {
     --background: hsl(var(--black));
@@ -61,12 +61,6 @@
     //   calc(var(--h) + 0)
     //   calc(var(--s) + 0%)
     //   calc(var(--l) - 0%);
-    --shadow: hsl(var(--black) / 0.16);
-  }
-
-  &[data-theme-style='light'] {
-    --foreground: hsl(var(--black));
-    --background: hsl(var(--silver));
     --shadow: hsl(var(--black) / 0.16);
   }
 
@@ -100,7 +94,7 @@ body {
   // https://drafts.csswg.org/css-align-3/#gutter
   --gutter: calc(var(--flow-space) * 2); // ~40px
   --gutter: 2rem; // ~32px
-  --btn-border-radius: 0.5rem; // ~8px
+  --border-radius: 0.5rem; // ~8px
 
   min-inline-size: 100%;
   min-inline-size: -webkit-fill-available;
@@ -115,35 +109,10 @@ body {
     background-color var(--duration) var(--easing);
 }
 
-theme-switch {
-  --theme-switch-border-color: transparent;
-  --theme-switch-icon-size: 1.25rem; // 1lh
-
-  padding-inline-end: var(--gutter);
-  visibility: hidden;
-
-  [data-theme-style='dark'] & {
-    // --theme-switch-icon-filter: invert(100%);
-  }
-}
-
 [data-hidden] {
   @include config.is-hidden;
 }
 
 .flow > * + * {
   margin-block-start: var(--flow-space, 1em);
-}
-
-.a2hs {
-  position: fixed;
-  z-index: 20;
-  display: flex;
-  padding: 1.25rem;
-  font-size: 1rem;
-  background-color: transparent;
-  justify-content: center;
-  inset: auto 0 0 auto;
-
-  &.hidden { display: none; }
 }

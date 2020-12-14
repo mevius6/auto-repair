@@ -12,20 +12,11 @@ html(class="no-js" dir="ltr" lang="ru")
   body.page.page--loading(itemscope itemtype="https://schema.org/WebPage")
     noscript
       | #[h2 В вашем браузере необходимо включить JavaScript.]
-    include ./_header
+    //- include ./_header
     main(data-id= page.id)
-      .a2hs.hidden
-        +cta({
-          base: 'a2hs',
-          type: 'button',
-          text: 'Установить'
-        })
       block content
     //- include ./_footer
-    include ./_cursor
+    //- include ./_cursor
 
     script(src="./js/index.js")
     block scripts
-
-    prepend scripts
-      script(src="./a2hs.js")

@@ -15,7 +15,7 @@ block vars
         'title': 'Покраска каждого второго элемента — бесплатно',
         'field': 'Целый авто за неделю, один элемент — 2-3 дня.',
       },
-    ]
+    ];
   -
     const advantages = [
       {
@@ -35,7 +35,7 @@ block vars
         'text': 'Оперативно информируем вас о статусе работ с вашим автомобилем.',
         'icon': 'mobile'
       },
-    ]
+    ];
   -
     const guarantees = [
       {
@@ -51,7 +51,7 @@ block vars
         'text': 'Осуществляем подбор колера всех типов автоэмалей. Гарантируем точное совпадение с цветом заводского покрытия.',
         'icon': 'colours'
       },
-    ]
+    ];
   -
     const reviews = [
       {
@@ -91,13 +91,13 @@ block vars
           'avatar': './images/avatars/4.png',
         },
       },
-    ]
-  - const count = arr => arr.length
+    ];
+  - const count = arr => arr.length;
 
 block content
   section(data-id="hero")
     +slides({
-      name: 'slides',
+      name: 'slides--1',
       data: offers,
       count: true
     })
@@ -115,9 +115,9 @@ block content
         | Выполненных работ
 
     .container
-      h3.headline#cardsLabel1
+      h3.headline
         | Преимущества работы с нами
-      section.cards(aria-labelledby="#cardsLabel1")
+      section.cards
         each advantage in advantages
           +card({
             view: 'compact',
@@ -127,9 +127,9 @@ block content
           })
 
     .container
-      h3.headline#sectionHeader1
+      h3.headline
         | Полный спектр услуг
-      section(aria-labelledby="#sectionHeader1")
+      section
         div(style={ '--side-fade': 120 })
           picture
             source(srcset="./images/car.png" type="image/png")
@@ -171,11 +171,11 @@ block content
           .item
 
     .container
-      h3.headline#cardsLabel2
+      h3.headline
         | Гарантия высокого качества
       p.desc
         | Современное оборудование и материалы, рекомендуемые ведущими производителями.
-      section.cards(aria-labelledby="#cardsLabel2")
+      section.cards
         each guarantee in guarantees
           +card({
             view: 'compact',
@@ -185,8 +185,8 @@ block content
           })
 
     .container
-      section(aria-labelledby="#sectionHeader2")
-        h3.headline#sectionHeader2
+      section
+        h3.headline
           | Оценка ремонта по фото
         ul
           li
@@ -204,23 +204,27 @@ block content
           | Отправить фото!
       picture
         source(srcset="./images/hero/2.webp" type="image/webp")
-        img(src="./images/hero/2.jpg" alt="" title="" loading="lazy")
+        img(
+          src="./images/hero/2.jpg"
+          alt="" title=""
+          width="600" height="400"
+          loading="lazy"
+        )
 
     .container
-      section(aria-labelledby="#sectionHeader3")
-        h3.headline#sectionHeader3
+      section
+        h3.headline
           | Сейчас в работе
         .vp-wrapper
           iframe(src="https://rtsp.me/embed/AfKbB34A/" loading="lazy" width="600" height="400" frameborder="0" allowfullscreen)
 
     .container
-      h3.headline#reviewsLabel
+      h3.headline
         | Нас рекомендуют!
       .column-wrapper
         ul.carousel(
           data-id="reviews"
           style=`--columns: ${count(reviews)};`
-          aria-labelledby="#reviewsLabel"
         )
           each review, i in reviews
             li.item(id=`review${i+1}`)

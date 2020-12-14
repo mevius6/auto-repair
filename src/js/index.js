@@ -1,6 +1,4 @@
 // eslint-disable-next-line no-unused-vars
-import * as ThemeSwitcher from './theme-switcher';
-// import * as map from './map';
 // import Cursor from './cursor';
 import Slideshow from './slideshow';
 import { horizontalScroll } from './carousel';
@@ -11,8 +9,6 @@ import {
   checkWebpFeature,
   checkSystem,
   isMobileDevice,
-  // select,
-  selectAll,
   findByData
 } from './utils';
 
@@ -23,30 +19,7 @@ const doc = document,
       root = doc.documentElement,
       body = doc.body;
 
-// eslint-disable-next-line no-unused-vars
-// const navBtn = new DisclosureForNav(doc.querySelector('.nav-button'));
-const themeSwitch = doc.querySelector('theme-switch');
-
-/* eslint-disable no-unused-vars */
-const slideshow = new Slideshow('.slides');
-const carousel1 = horizontalScroll(findByData('logos', 'id'), {
-  control: 'scroll'
-});
-const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
-  control: 'dots'
-});
-// const reveal = revealText(selectAll('.reveal'));
-// const parallax = parallaxImages(selectAll('.parallax-image'));
-/* eslint-enable no-unused-vars */
-
-root.setAttribute('data-theme-style', themeSwitch.mode === 'dark'
-  ? 'dark'
-  : 'light'
-);
-
-themeSwitch.addEventListener('colorschemechange', () => {
-  root.dataset.themeStyle = themeSwitch.mode;
-});
+root.setAttribute('data-theme-style', 'dark');
 
 let imageFormat = '';
 checkWebpFeature('lossy')
@@ -70,4 +43,16 @@ window.addEventListener('load', () => {
   root.dataset.os = os;
   body.classList.remove('page--loading');
   body.classList.add('page--loaded');
+
+  /* eslint-disable no-unused-vars */
+  const slideshow = new Slideshow('.slides');
+  const carousel1 = horizontalScroll(findByData('logos', 'id'), {
+    control: 'scroll'
+  });
+  const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
+    control: 'dots'
+  });
+  // const reveal = revealText(selectAll('.reveal'));
+  // const parallax = parallaxImages(selectAll('.parallax-image'));
+  /* eslint-enable no-unused-vars */
 });

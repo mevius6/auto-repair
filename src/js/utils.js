@@ -154,7 +154,6 @@ function checkBrowser() {
   let UA = navigator.userAgent;
   let browser;
 
-  // es5: UA.indexOf('...') > -1;
   let chromeAgent = UA.includes('Chrome');
   let IExplorerAgent = UA.includes('MSIE') || UA.includes('rv:');
   let firefoxAgent = UA.includes('Firefox');
@@ -176,7 +175,6 @@ function checkSystem() {
   let AV = navigator.appVersion;
   let os;
 
-  // es5: AV.indexOf('...') != -1)
   if (AV.includes('Win')) os = 'Windows';
   if (AV.includes('Mac')) os = 'macOS';
   if (AV.includes('X11')) os = 'UNIX';

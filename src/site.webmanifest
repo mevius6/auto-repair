@@ -2,7 +2,7 @@
   "dir": "ltr",
   "lang": "ru",
   "name": "Рус-Авто",
-  "short_name": "РусАвто",
+  "short_name": "Рус-Авто",
   "description": "Малярно-кузовной цех",
   "icons": [{
     "src": "/android-chrome-192x192.png",

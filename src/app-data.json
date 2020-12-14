@@ -1,15 +1,11 @@
 {
   "meta": {
-    "domain": "https://site.com",
-    "email": "sales@site.com",
+    "domain": "https://auto-repair.vercel.app",
+    "email": "sales@rusauto.ru",
     "name": "Малярно-кузовной цех «Рус-Авто»",
     "links": {
       "apple": "https://apps.apple.com/us/app/",
-      "google": "https://play.google.com/store/apps/details?"
-    },
-    "badges": {
-      "apple": "url(https://linkmaker.itunes.apple.com/ru-ru/badge-lrg.svg?releaseDate=2020-05-07&kind=iossoftware&bubble=ios_apps)",
-      "google": "url(https://play.google.com/intl/en_us/badges/static/images/badges/ru_badge_web_generic.png)"
+      "google": "https://play.google.com/store/apps/"
     },
     "keywords": ""
   },
@@ -21,26 +17,12 @@
       "description": "Политика обработки персональных данных",
       "keywords": ""
     },
-    "contact": {
-      "id": "contact",
-      "path": ["/contact.pug", "/contact"],
-      "title": ["Контактная информация", ""],
-      "description": "",
-      "keywords": ""
-    },
     "index": {
       "id": "index",
       "path": "/",
       "title": ["", ""],
       "description": "Кузовной ремонт и покраска авто в Великом Новгороде.",
       "keywords": "кузовной ремонт, великий новгород"
-    },
-    "notfound": {
-      "id": "notfound",
-      "path": ["/404.pug", "/404"],
-      "title": ["Не найдено", ""],
-      "description": "",
-      "keywords": ""
     }
   }
 }

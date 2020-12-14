@@ -67,6 +67,10 @@
     hyphens: manual;
   }
 
+  &__date {
+    //
+  }
+
   &__content {
     @include config.flow();
     // margin-block-start: 0.5em;
@@ -133,8 +137,6 @@
       --zi: 2;
       transform: scale(1.05);
     }
-
-    // :hover > &:not(:hover) {}
 
     &:nth-child(1) {
       clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%);
