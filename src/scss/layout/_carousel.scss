@@ -37,7 +37,7 @@
   }
 
   &[data-id='reviews'] {
-    --min-col-size: 45ch;
+    --min-col-size: 37ch;
     --max-col-size: 65ch;
 
     display: grid;
@@ -53,6 +53,10 @@
     .item {
       @include config.bg-images('avatars', 'png', 'avatar');
       place-items: center;
+    }
+
+    @include config.respond('tablet') {
+      --min-col-size: 45ch;
     }
   }
 

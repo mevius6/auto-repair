@@ -25,13 +25,13 @@ export const horizontalScroll = (section, vars = {}) => {
   const anim = gsap.to(wrap, {
     x: -(itemWidth * (totalItems - 1) + totalSpacing),
     ease: 'none',
-    paused: true
+    paused: true,
   });
 
   gsap.set(wrap, {
     position: 'absolute',
     top: 0,
-    left: `calc(50% - ${itemWidth/2}px)`
+    left: vars.centered ? `calc(50% - ${itemWidth/2}px)` : 0,
   });
 
   const tl = gsap.timeline({

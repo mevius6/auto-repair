@@ -84,9 +84,13 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(var(--max-col-size), 1fr);
-  grid-template-rows: minmax(32rem, 1fr);
+  grid-template-rows: minmax(30rem, 1fr);
   overflow: hidden;
-  grid-column: 2 / span 6;
+  grid-column: full;
+
+  @include config.respond('tablet') {
+    grid-column: content;
+  }
 
   &::before,
   &::after {

@@ -18,7 +18,7 @@
   .leaflet-marker-pane img,
   .leaflet-overlay-pane svg,
   .leaflet-tile-pane img,
-  .leaflet-image-layer { max-width: none!important; }
+  .leaflet-image-layer { max-width: none !important; }
 
   &.leaflet-touch-zoom {
     touch-action: pan-x pan-y;
@@ -71,6 +71,7 @@
     }
   }
 
+  /* autoprefixer: ignore next */
   &-safari &-tile { image-rendering: -webkit-optimize-contrast; }
 
   &-safari &-tile-container {
@@ -81,6 +82,7 @@
     -webkit-transform-origin: 0 0;
   }
 
+  /* autoprefixer: ignore next */
   &-overlay-pane svg { -moz-user-select: none; }
   &-map-pane canvas { z-index: 1; }
   &-map-pane svg { z-index: 2; }
@@ -397,8 +399,6 @@
   content: '';
 }
 .leaflet-bar a { display: block; }
-
-[data-id='map'] { block-size: 60vh; }
 
 /* stylelint-disable-next-line selector-max-specificity */
 #map {

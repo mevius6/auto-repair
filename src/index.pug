@@ -74,7 +74,7 @@ block vars
         },
       }, {
         'rating': '5',
-        'title': 'Honda Accord',
+        'title': 'Volkswagen',
         'text': 'Хочу сказать спасибо Андрею, Владимиру и остальным ребятам которые восстановили нашу машинку, за их отличный подход к ситуации.',
         'date': '11.10.20',
         'user': {
@@ -83,7 +83,7 @@ block vars
         },
       }, {
         'rating': '5',
-        'title': 'Hyundai Creta',
+        'title': 'Hyundai',
         'text': 'Всегда на связи и всё доходчиво объясняли. Спасибо вам большое за ваше терпение и обслуживание, рекомендую всем кузовной центр «Рус-Авто».',
         'date': '10.09.20',
         'user': {
@@ -92,10 +92,40 @@ block vars
         },
       },
     ];
+  -
+    const services = [
+      {
+        'listItems': [
+          {
+            'text': 'Покраска автомобиля',
+          }, {
+            'text': 'Локальная покраска',
+          }, {
+            'text': 'Полировка кузова',
+          }, {
+            'text': 'Замена и полировка стёкол',
+          }, {
+            'text':'Полировка фар',
+          },
+        ]
+      }, {
+        'listItems': [
+          {
+            'text': 'Кузовной ремонт',
+          }, {
+            'text': 'Восстановление геометрии кузова',
+          }, {
+            'text': 'Ремонт пластиковых деталей',
+          }, {
+            'text': 'Сварочное работы',
+          },
+        ]
+      }
+    ];
   - const count = arr => arr.length;
 
 block content
-  section(data-id="hero")
+  .hero
     +slides({
       name: 'slides--1',
       data: offers,
@@ -103,21 +133,22 @@ block content
     })
 
   .grid
-    ul.container
-      li
-        | #[span.num 12]
-        | Лет стабильной работы
-      li
-        | #[span.num 3479]
-        | Окрашенных автомобилей
-      li
-        | #[span.num 5196]
-        | Выполненных работ
+    .container
+      ul.content(data-columns="3")
+        li
+          | #[span.num 12]
+          | Лет стабильной работы
+        li
+          | #[span.num 3479]
+          | Окрашенных автомобилей
+        li
+          | #[span.num 5196]
+          | Выполненных работ
 
     .container
       h3.headline
         | Преимущества работы с нами
-      section.cards
+      section.cards.full(data-columns="4")
         each advantage in advantages
           +card({
             view: 'compact',
@@ -129,37 +160,21 @@ block content
     .container
       h3.headline
         | Полный спектр услуг
-      section
-        div(style={ '--side-fade': 120 })
-          picture
-            source(srcset="./images/car.png" type="image/png")
-            img(
-              src="./images/car.png"
-              alt="Автомобиль" title=""
-              width="600" height="400"
-              loading="lazy"
-            )
-        div
-          ul
-            li
-              | Покраска автомобиля
-            li
-              | Локальная покраска
-            li
-              | Полировка кузова
-            li
-              | Замена и полировка стёкол
-            li
-              | Полировка фар
-          ul
-            li
-              | Кузовной ремонт
-            li
-              | Восстановление геометрии кузова
-            li
-              | Ремонт пластиковых деталей
-            li
-              | Сварочное работы
+      .start-half(style={ '--side-fade': 120 })
+        picture
+          source(srcset="./images/car.png" type="image/png")
+          img(
+            src="./images/car.png"
+            alt="Автомобиль" title=""
+            width="600" height="400"
+            loading="lazy"
+          )
+      .end-half(data-columns="2")
+        each service in services
+          +list({
+            items: service.listItems,
+            ordered: false
+          })
 
     .container
       - let logos = 20
@@ -175,7 +190,7 @@ block content
         | Гарантия высокого качества
       p.desc
         | Современное оборудование и материалы, рекомендуемые ведущими производителями.
-      section.cards
+      section.cards.content(data-columns="3")
         each guarantee in guarantees
           +card({
             view: 'compact',
@@ -185,7 +200,7 @@ block content
           })
 
     .container
-      section
+      article.start-half.flow
         h3.headline
           | Оценка ремонта по фото
         ul
@@ -202,7 +217,7 @@ block content
           href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
         )
           | Отправить фото!
-      picture
+      picture.end-half
         source(srcset="./images/hero/2.webp" type="image/webp")
         img(
           src="./images/hero/2.jpg"
@@ -212,11 +227,11 @@ block content
         )
 
     .container
-      section
+      section.center
         h3.headline
           | Сейчас в работе
         .vp-wrapper
-          iframe(src="https://rtsp.me/embed/AfKbB34A/" loading="lazy" width="600" height="400" frameborder="0" allowfullscreen)
+          iframe(src="https://rtsp.me/embed/AfKbB34A/" loading="lazy" width="600" height="450" frameborder="0" allowfullscreen)
 
     .container
       h3.headline
@@ -245,8 +260,7 @@ block content
             })
 
     .container
-      section(data-id="map")
-        #map
+      #map
 
 block scripts
   script(defer type="module" src="./js/map.js")

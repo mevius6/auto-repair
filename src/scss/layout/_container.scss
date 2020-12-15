@@ -1,26 +1,18 @@
 @use '../config';
 
 .grid {
-  // grid-template-columns:
-  //   [full-start] minmax(0, 1fr)
-  //   [content-xl] minmax(min-content, 1280px)
-  //   [full-end] minmax(0, 1fr);
-
-  // grid-template-columns:
-  //   [full-start] minmax(0, 1fr)
-  //   [content-start start-half-start] minmax(0,1fr)
-  //   [start-half-end end-half-start] minmax(0,2fr)
-  //   [end-half-end content-end] minmax(0,1fr)
-  //   [full-end];
-
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [content-start start-half-start] minmax(0, 1fr)
+    [center-start] minmax(0, 2fr)
+    [start-half-end end-half-start] minmax(0, 2fr)
+    [center-end] minmax(0, 1fr)
+    [end-half-end content-end] minmax(0, 1fr)
+    [full-end];
   grid-template-rows: minmax(min-content, 1fr);
   column-gap: var(--gutter);
-  row-gap: 120px;
-  max-inline-size: 1280px; // xl
-  margin: 0 auto;
-  // margin-inline: var(--gutter);
+  row-gap: calc(var(--gutter) * 2);
 
   @for $i from 1 through 10 {
     .container:nth-child(#{$i}) {
@@ -29,81 +21,100 @@
   }
 }
 
-.container {
-  // grid-column: content-xl;
-  // grid-column: full;
+.content {
+  grid-column: content-start / content-end;
+  grid-column: content;
+  display: grid;
+}
 
+.full {
+  grid-column: full-start / full-end;
+  grid-column: full;
+}
+
+.start-half,
+.end-half,
+.center {
+  grid-column: content;
+}
+
+@include config.respond('tablet') {
+  .grid { row-gap: 7.5rem; }
+
+  .start-half {
+    grid-column: start-half-start / start-half-end;
+  }
+
+  .end-half {
+    grid-column: end-half-start / end-half-end;
+  }
+
+  .center {
+    grid-column: center-start / center-end;
+  }
+}
+
+@for $i from 1 through 4 {
+  [data-columns='#{$i}'] {
+    display: grid;
+    // grid-template-columns: 1fr;
+
+    @include config.respond('tablet') {
+      grid-template-columns: repeat($i, 1fr);
+    }
+  }
+}
+
+.container {
   position: relative;
   display: grid;
   grid-template-columns: inherit;
   grid-template-columns: subgrid;
-  grid-column-gap: inherit;
-  grid-column: 1 / -1;
-  row-gap: 40px;
+  grid-column: full;
+  column-gap: inherit;
+  row-gap: 2.5rem;
+  padding-inline: var(--gutter);
+
+  &--xl { max-inline-size: 1280px; }
 
   > h3,
   h3 + .desc {
     max-inline-size: 30ch;
+    grid-column: 1 / -1;
+    justify-self: center;
     hyphens: none;
     text-align: center;
-    justify-self: center;
-    grid-column: inherit;
   }
 
   // Счётчики
   &:nth-child(1) {
+    background:
+      linear-gradient(
+        180deg,
+        #c00 0%,
+        rgba(204, 0, 0, 0) 100%
+      );
+
     li {
-      place-self: start;
-      grid-column-end: span 2;
+      place-self: start center;
       row-gap: 1rem;
       padding: 1rem;
       text-align: center;
-
-      &:nth-of-type(1) {
-        grid-column-start: 2;
-      }
-    }
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: -20%;
-      z-index: -1;
-      inline-size: 140%;
-      block-size: 100%;
-      content: '';
-      background:
-        linear-gradient(
-          180deg,
-          #c00 0%,
-          rgba(204, 0, 0, 0) 100%
-        );
     }
   }
 
   // Преимущества
-  &:nth-child(2) > .cards { grid-column: 1 / -1; }
+  // &:nth-child(2) {}
 
   // Услуги
   &:nth-child(3) {
-    // grid-template-columns: repeat(2, 1fr);
-    // column-gap: inherit;
-
-    section {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr;
-      column-gap: inherit;
-    }
-
-    section > div:nth-child(1) {
+    .start-half {
       position: relative;
       overflow: hidden;
-      // background-image: url('../images/car.png');
 
       &::after {
         position: absolute;
+        top: 0;
         right: 0;
         z-index: 1;
         display: inline-block;
@@ -127,11 +138,10 @@
       }
     }
 
-    section > div:nth-child(2) {
+    .end-half {
       // columns: auto 2;
       display: flex;
       align-items: flex-start;
-      // justify-content: space-between;
       margin-block: 60px;
 
       > ul {
@@ -147,7 +157,7 @@
 
   // Логотипы
   &:nth-child(4) {
-    // display: inline-flex;
+    display: inline-flex;
     block-size: calc(3.5rem + 120px);
 
     &::before {
@@ -163,21 +173,16 @@
   }
 
   // Оборудование
-  &:nth-child(5) > .cards { grid-column: 2 / -2; }
+  // &:nth-child(5) {}
 
-  // WA
+  // Призыв к действию
   &:nth-child(6) {
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-
-    section {
+    article {
       --flow-space: 1.5rem;
 
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-
-      > * + * { margin-block-start: var(--flow-space); }
     }
 
     li { padding-inline-start: 1.5rem; }
@@ -185,7 +190,7 @@
     // li::marker { content: '✓'; }
     li::after {
       position: absolute;
-      top: 0.25rem;
+      top: 0.44rem;
       left: 0.5rem;
       display: block;
       width: 7px;
@@ -195,6 +200,7 @@
       border-style: solid;
       border-width: 0 2px 2px 0;
       transform: rotate(var(--rz, 43deg));
+      transform-origin: top;
     }
 
     .cta {
@@ -203,6 +209,9 @@
       text-transform: uppercase;
       letter-spacing: 0.0625rem;
     }
+
+    picture,
+    img { block-size: 100%; }
   }
 
   // Трансляция
@@ -223,7 +232,7 @@
     > section {
       inline-size: 100%;
       margin-block: 60px;
-      grid-column: 3 / span 4;
+      // grid-column: 3 / span 4;
 
       > * + * { margin-block-start: var(--flow-space); }
 
@@ -235,7 +244,7 @@
     }
 
     .vp-wrapper {
-      @include config.aspect-ratio('2/3');
+      @include config.aspect-ratio('3/4');
 
       &::after {
         position: absolute;
@@ -260,14 +269,12 @@
   }
 
   // Истории клиентов
-  &:nth-child(8) {
-    //
-  }
+  // &:nth-child(8) {}
 
   // Карта
   &:nth-child(9) {
-    section {
-      grid-column: inherit;
-    }
+    block-size: 80vh;
+
+    > div { grid-column: 1 / -1; }
   }
 }

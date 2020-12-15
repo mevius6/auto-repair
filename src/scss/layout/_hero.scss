@@ -1,7 +1,7 @@
 @use '../config';
 
-[data-id='hero'] {
-  .cover {
+.hero {
+  &__cover {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,5 +11,5 @@
     // filter: opacity(0.8);
   }
 
-  .title { pointer-events: none; }
+  &__title { pointer-events: none; }
 }

@@ -69,13 +69,15 @@
   &__header { overflow-x: hidden; }
 
   &__headline {
+    display: block;
+    min-inline-size: 100%;
+
     #{$compact} & {
       // @include config.line-clamp(1);
-
-      display: block;
-      min-inline-size: 100%;
     }
   }
+
+  &__subhead { margin: 0 auto; }
 
   &__body {
     flex: 1 0 auto;
@@ -103,11 +105,6 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  margin: 0 auto;
   gap: inherit;
-
-  & > .card {
-    grid-column-end: span 2;
-    grid-row: 1;
-  }
 }
