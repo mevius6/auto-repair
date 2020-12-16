@@ -1,7 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 // import Cursor from './cursor';
 import Slideshow from './slideshow';
 import { horizontalScroll } from './carousel';
+// eslint-disable-next-line no-unused-vars
+import * as Counters from './counters';
 // import { parallaxImages } from './parallax';
 // import { revealText } from './text-reveal';
 import {
@@ -9,7 +10,7 @@ import {
   checkWebpFeature,
   checkSystem,
   isMobileDevice,
-  findByData
+  findByData,
 } from './utils';
 
 const os = checkSystem();

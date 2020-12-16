@@ -148,15 +148,15 @@ block content
 
   .grid
     .container
-      ul.content(data-columns="3")
+      ul.content.counters(data-columns="3")
         li
-          | #[span.num 12]
+          | #[span.num.counter(data-count='12')]
           | Лет стабильной работы
         li
-          | #[span.num 3479]
+          | #[span.num.counter(data-count='3479')]
           | Окрашенных автомобилей
         li
-          | #[span.num 5196]
+          | #[span.num.counter(data-count='5196')]
           | Выполненных работ
 
     .container
@@ -172,7 +172,7 @@ block content
           })
 
     .container
-      picture.start-half
+      picture.start-half(style={ '--offset': -1})
         source(srcset="./images/1.webp" type="image/webp")
         img(
           src="./images/1.jpg"
@@ -232,9 +232,9 @@ block content
         )
           | Отправить фото
       picture.end-half
-        source(srcset="./images/hero/2.webp" type="image/webp")
+        //- source(srcset="./images/hero/2.webp" type="image/webp")
         img(
-          src="./images/hero/2.jpg"
+          src="./images/repair.png"
           alt="" title=""
           width="600" height="400"
           loading="lazy"

@@ -82,7 +82,7 @@ h4 {
   --px2rem: calc((var(--px-size) / 16) * 1rem);
 
   font-size: var(--px2rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -111,13 +111,21 @@ article {
   }
 }
 
+.subhead > [itemprop='name'] {
+  font-feature-settings: 'case' 1;
+  text-transform: uppercase;
+}
+
 // [class$='logo'] {}
 [class$='title'] {
   font-weight: 400;
   line-height: 1;
 }
 
-[class*='headline'] { font-weight: 600; }
+[class*='headline'] {
+  font-weight: 600;
+  text-transform: uppercase;
+}
 
 [class$='subhead'] { font-weight: 500; }
 

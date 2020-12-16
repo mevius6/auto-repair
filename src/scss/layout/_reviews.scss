@@ -133,11 +133,12 @@
   border-radius: 0.5rem;
 
   &:hover > &__image {
-    /* stylelint-disable-next-line selector-max-specificity */
+    // stylelint-disable-next-line selector-max-specificity
     &:nth-child(1):not(:hover) {
       clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 0% 0%);
     }
 
+    // stylelint-disable-next-line selector-max-specificity
     &:nth-child(2):not(:hover) {
       clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 100% 100%);
     }

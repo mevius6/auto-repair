@@ -24,7 +24,7 @@ const DESC = 'Малярно-кузовной цех';
 // https://schema.org/Restaurant
 const addMicrodata = (name, desc, address, time, telephone, direction) => `
 <article itemscope itemtype="http://schema.org/LocalBusiness">
-  <h4 class="headline">
+  <h4 class="subhead">
     <span itemprop="name">${name}</span>
   </h4>
   <span itemprop="description">${desc}</span>
