@@ -457,6 +457,8 @@
 
     span + span { display: block; }
 
+    [itemprop="telephone"] { display: inline-block; }
+
     article {
       display: flex;
       flex-direction: column;

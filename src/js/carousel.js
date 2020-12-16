@@ -60,7 +60,7 @@ export const horizontalScroll = (section, vars = {}) => {
       end: 'bottom top',
       scrub: true,
       invalidateOnRefresh: true,
-      // nEnter: () => tl.to(theseItems, { opacity: 1 }),
+      // onEnter: () => tl.to(theseItems, { opacity: 1 }),
       onUpdate: self => {
         gsap.to(anim, {
           progress: self.progress,

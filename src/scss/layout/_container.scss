@@ -91,8 +91,8 @@
     background:
       linear-gradient(
         180deg,
-        #c00 0%,
-        rgba(204, 0, 0, 0) 100%
+        var(--red) 0%,
+        hsl(0 0% 0% / 0) 100%
       );
 
     li {
@@ -111,47 +111,10 @@
     .start-half {
       position: relative;
       overflow: hidden;
-
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        display: inline-block;
-        inline-size: calc(var(--side-fade) * 1px);
-        height: 100%;
-        content: '';
-        background:
-          linear-gradient(
-            to right,
-            hsl(0 0% 95.7% / 0),
-            var(--background)
-          );
-      }
-
-      > picture {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateX(60px) translateY(-50%);
-        // transform: rotate(-90deg);
-      }
     }
 
     .end-half {
       // columns: auto 2;
-      display: flex;
-      align-items: flex-start;
-      margin-block: 60px;
-
-      > ul {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-
-        li { padding: 0; }
-      }
-
-      > ul + ul { padding-inline-start: var(--gutter); }
     }
   }
 
@@ -175,6 +138,8 @@
   // Оборудование
   // &:nth-child(5) {}
 
+  // Услуги
+  &:nth-child(3),
   // Призыв к действию
   &:nth-child(6) {
     article {
@@ -184,6 +149,9 @@
       flex-direction: column;
       align-items: flex-start;
     }
+
+    picture,
+    img { block-size: 100%; }
 
     li { padding-inline-start: 1.5rem; }
 
@@ -209,9 +177,6 @@
       text-transform: uppercase;
       letter-spacing: 0.0625rem;
     }
-
-    picture,
-    img { block-size: 100%; }
   }
 
   // Трансляция

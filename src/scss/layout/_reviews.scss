@@ -10,7 +10,7 @@
   padding-inline: 2ch;
   flex-direction: column;
   border-radius: 1rem;
-  box-shadow: 0 0 0 1px var(--foreground) inset;
+  // box-shadow: 0 0 0 1px var(--foreground) inset;
   justify-content: space-between;
 
   &__header,
@@ -82,10 +82,10 @@
   --side-fade: 20;
 
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(var(--max-col-size), 1fr);
-  grid-template-rows: minmax(30rem, 1fr);
+  display: flex;
+  min-block-size: 30rem;
   overflow: hidden;
+  flex-direction: column;
   grid-column: full;
 
   @include config.respond('tablet') {
