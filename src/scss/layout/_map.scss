@@ -219,7 +219,7 @@
   &-container &-control-attribution {
     padding: 5px 10px;
     margin: 0;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.25;
     box-shadow: none;
 
@@ -457,7 +457,7 @@
 
     span + span { display: block; }
 
-    [itemprop="telephone"] { display: inline-block; }
+    [itemprop='telephone'] { display: inline-block; }
 
     article {
       display: flex;

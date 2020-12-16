@@ -13,6 +13,7 @@
   grid-template-rows: minmax(min-content, 1fr);
   column-gap: var(--gutter);
   row-gap: calc(var(--gutter) * 2);
+  overflow-x: hidden;
 
   @for $i from 1 through 10 {
     .container:nth-child(#{$i}) {
@@ -97,8 +98,8 @@
 
     li {
       place-self: start center;
-      row-gap: 1rem;
-      padding: 1rem;
+      row-gap: var(--flow-space);
+      padding: var(--spacer-1);
       text-align: center;
     }
   }
@@ -107,16 +108,7 @@
   // &:nth-child(2) {}
 
   // Услуги
-  &:nth-child(3) {
-    .start-half {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .end-half {
-      // columns: auto 2;
-    }
-  }
+  // &:nth-child(3) {}
 
   // Логотипы
   &:nth-child(4) {
@@ -138,9 +130,7 @@
   // Оборудование
   // &:nth-child(5) {}
 
-  // Услуги
   &:nth-child(3),
-  // Призыв к действию
   &:nth-child(6) {
     article {
       --flow-space: 1.5rem;
@@ -149,9 +139,6 @@
       flex-direction: column;
       align-items: flex-start;
     }
-
-    picture,
-    img { block-size: 100%; }
 
     li { padding-inline-start: 1.5rem; }
 
@@ -177,6 +164,9 @@
       text-transform: uppercase;
       letter-spacing: 0.0625rem;
     }
+
+    picture,
+    img { block-size: 100%; }
   }
 
   // Трансляция
@@ -184,8 +174,8 @@
     background-image:
       linear-gradient(
         0deg,
-        rgba(27, 31, 35, 0.7),
-        rgba(27, 31, 35, 0.7)
+        hsl(210 13% 12% / 0.7),
+        hsl(210 13% 12% / 0.7)
       ),
       url('../images/hero/1.jpg');
     background-repeat: no-repeat;
@@ -197,14 +187,12 @@
     > section {
       inline-size: 100%;
       margin-block: 60px;
-      // grid-column: 3 / span 4;
 
       > * + * { margin-block-start: var(--flow-space); }
 
       iframe {
-        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-        // filter: blur(1rem);
-        border-radius: 1rem;
+        filter: drop-shadow(0 10px 20px hsl(0 0% 0% / 0.2));
+        border-radius: var(--radii-2);
       }
     }
 

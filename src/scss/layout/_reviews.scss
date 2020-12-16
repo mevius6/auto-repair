@@ -132,6 +132,17 @@
   overflow: hidden;
   border-radius: 0.5rem;
 
+  &:hover > &__image {
+    /* stylelint-disable-next-line selector-max-specificity */
+    &:nth-child(1):not(:hover) {
+      clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 0% 0%);
+    }
+
+    &:nth-child(2):not(:hover) {
+      clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 100% 100%);
+    }
+  }
+
   &__image {
     z-index: var(--zi, 1);
     transition: transform 150ms ease-in, clip-path 200ms ease-in-out;

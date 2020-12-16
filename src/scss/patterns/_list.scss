@@ -49,7 +49,7 @@ ol {
     text-align: center;
     content: counter(orderedlist);
     counter-increment: orderedlist;
-    background-color: var(--li-bg, hsl(var(--accent)));
+    background-color: var(--li-bg, var(--accent));
     border-radius: 0.25em;
     font-feature-settings: 'tnum' 1;
   }
