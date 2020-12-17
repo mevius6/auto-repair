@@ -117,19 +117,16 @@ article {
 }
 
 // [class$='logo'] {}
+
 [class$='title'] {
   font-weight: 400;
   line-height: 1;
 }
 
-[class*='headline'] {
-  font-weight: 600;
-  // font-feature-settings: 'case' 1;
-  // text-transform: uppercase;
-  // letter-spacing: 1.5px;
-}
+[class*='headline'] { font-weight: 600; }
 
 // [class*='subheadline'] {}
+
 [class*='overline'] {
   font-size: 0.75rem;
   // font-feature-settings: 'case' 1;
