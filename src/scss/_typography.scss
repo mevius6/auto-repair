@@ -126,17 +126,24 @@ article {
   font-weight: 600;
   text-transform: uppercase;
   font-feature-settings: 'case' 1;
+  // letter-spacing: 1.5px;
 }
 
-[class$='subhead'] { font-weight: 500; }
+[class$='subhead'] {
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
 
 [class$='body'] { font-weight: 400; }
 
 [class$='link'] { font-weight: 500; }
 
-[class$='link'],
 [class*='cta'] {
-  // @include config.typeset('sans');
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  // letter-spacing: 0.0625rem;
+  letter-spacing: 1.25px;
 }
 
 [href*='tel'],

@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
   });
   const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
     control: 'dots',
-    // centered: true
+    // position: 'center'
   });
   // const reveal = revealText(selectAll('.reveal'));
   // const parallax = parallaxImages(selectAll('.parallax-image'));
