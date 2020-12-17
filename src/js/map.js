@@ -20,7 +20,7 @@ const ATTR = 'Данные карты &copy; <a href="https://www.openstreetmap.
 const NAME = '«Рус-Авто»';
 const DESC = 'Малярно-кузовной цех';
 
-// шаблон микроразметки для поисковых систем
+// Шаблон микроразметки для поисковых систем
 // https://schema.org/Restaurant
 const addMicrodata = (name, desc, address, time, telephone, direction) => `
 <article itemscope itemtype="http://schema.org/LocalBusiness">
@@ -61,8 +61,8 @@ const location = {
     '8 950 686-23-58',
     'https://goo.gl/maps/7EGiAjLzyrQvtxJB8'
   ),
-  lat: 58.531300,
-  lng: 31.259243,
+  lat: 58.531446,
+  lng: 31.257672,
 };
 
 const coords = [location.lat, location.lng];
@@ -92,7 +92,7 @@ const mapOptions = {
   scrollWheelZoom: false,
 }
 
-const map = L.map('map', mapOptions).setView(coords, 14);
+const map = L.map('map', mapOptions).setView(coords, 17);
 
 style.addTo(map);
 
