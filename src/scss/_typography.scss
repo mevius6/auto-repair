@@ -124,14 +124,24 @@ article {
 
 [class*='headline'] {
   font-weight: 600;
-  text-transform: uppercase;
-  font-feature-settings: 'case' 1;
+  // font-feature-settings: 'case' 1;
+  // text-transform: uppercase;
   // letter-spacing: 1.5px;
+}
+
+// [class*='subheadline'] {}
+[class*='overline'] {
+  font-size: 0.75rem;
+  // font-feature-settings: 'case' 1;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.75;
 }
 
 [class$='subhead'] {
   font-weight: 500;
-  letter-spacing: -0.5px;
+  // letter-spacing: -0.5px;
 }
 
 [class$='body'] { font-weight: 400; }

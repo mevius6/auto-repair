@@ -199,7 +199,7 @@
     }
 
     .vp-wrapper {
-      @include config.aspect-ratio('3/4');
+      @include config.aspect-ratio('9/16');
 
       &::after {
         position: absolute;
