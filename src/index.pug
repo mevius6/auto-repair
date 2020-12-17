@@ -9,12 +9,12 @@ block vars
   -
     const offers = [
       {
+        'title': 'Покраска каждого второго элемента — бесплатно',
+        'field': 'Элемент определяется наименьшей ценой оценки',
+      }, {
         'title': 'Покраска авто с гарантией',
         'field': 'Целый авто за неделю, один элемент — 2-3 дня.',
-      }, {
-        'title': 'Покраска каждого второго элемента — бесплатно',
-        'field': 'Целый авто за неделю, один элемент — 2-3 дня.',
-      },
+      }
     ];
   -
     const advantages = [
@@ -33,7 +33,7 @@ block vars
       }, {
         'title': 'СМС-уведомления',
         'text': 'Оперативно информируем вас о статусе работ с вашим автомобилем.',
-        'icon': 'mobile'
+        'icon': 'phone'
       },
     ];
   -
@@ -69,7 +69,7 @@ block vars
         'text': 'Всегда на связи и всё доходчиво объясняли. Спасибо вам большое за ваше терпение и обслуживание, рекомендую всем кузовной центр «Рус-Авто».',
         'date': '11.11.20',
         'user': {
-          'name': 'Максим Дмитриев',
+          'name': 'Максим Смирнов',
           'avatar': './images/avatars/2.png',
         },
       }, {
@@ -97,27 +97,41 @@ block vars
       {
         'listItems': [
           {
-            'text': 'Покраска автомобиля',
+            'text': 'Кузовной ремонт',
           }, {
-            'text': 'Локальная покраска',
+            'text': 'Восстановление геометрии кузова',
           }, {
-            'text': 'Полировка кузова',
+            'text': 'Сварочные работы',
           }, {
-            'text': 'Замена и полировка стёкол',
+            'text': 'Ремонт пластиковых деталей',
           }, {
-            'text':'Полировка фар',
+            'text': 'Полная и локальная покраска автомобиля',
+          }, {
+            'text': 'Замена и полировка стекол и фар',
           },
         ]
-      }, {
+      }
+    ];
+  //-
+    const services = [
+      {
         'listItems': [
           {
             'text': 'Кузовной ремонт',
           }, {
             'text': 'Восстановление геометрии кузова',
           }, {
+            'text': 'Сварочные работы',
+          },
+        ]
+      }, {
+        'listItems': [
+          {
             'text': 'Ремонт пластиковых деталей',
           }, {
-            'text': 'Сварочное работы',
+            'text': 'Полная и локальная покраска автомобиля',
+          }, {
+            'text': 'Замена и полировка стекол и фар',
           },
         ]
       }
@@ -134,16 +148,16 @@ block content
 
   .grid
     .container
-      ul.content(data-columns="3")
+      ul.content.counters(data-columns="3")
         li
-          | #[span.num 12]
-          | Лет стабильной работы
+          | #[span.num.counter(data-count='12')]
+          | #[span.overline Лет стабильной работы]
         li
-          | #[span.num 3479]
-          | Окрашенных автомобилей
+          | #[span.num.counter(data-count='3479')]
+          | #[span.overline Окрашенных автомобилей]
         li
-          | #[span.num 5196]
-          | Выполненных работ
+          | #[span.num.counter(data-count='5196')]
+          | #[span.overline Выполненных работ]
 
     .container
       h3.headline
@@ -158,18 +172,17 @@ block content
           })
 
     .container
-      h3.headline
-        | Полный спектр услуг
-      .start-half(style={ '--side-fade': 120 })
-        picture
-          source(srcset="./images/car.png" type="image/png")
-          img(
-            src="./images/car.png"
-            alt="Автомобиль" title=""
-            width="600" height="400"
-            loading="lazy"
-          )
-      .end-half(data-columns="2")
+      picture.start-half
+        source(srcset="./images/1.webp" type="image/webp")
+        img(
+          src="./images/1.jpg"
+          alt="Автомобиль" title=""
+          width="600" height="400"
+          loading="lazy"
+        )
+      article.end-half.flow
+        h3.headline
+          | Полный спектр услуг
         each service in services
           +list({
             items: service.listItems,
@@ -179,7 +192,13 @@ block content
     .container
       - let logos = 20
       .carousel(
-        data-id="logos"
+        data-id="logos0"
+        style={ '--columns': logos }
+      )
+        each logo in Array(logos)
+          .item
+      .carousel(
+        data-id="logos1"
         style={ '--columns': logos }
       )
         each logo in Array(logos)
@@ -213,14 +232,14 @@ block content
           li
             | Получите рассчёт стоимости и сроки выполнения работ
         a.cta(
-          aria-label="Отправить сообщение WhatsApp"
+          aria-label="Отправить фото"
           href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
         )
-          | Отправить фото!
+          | Отправить фото
       picture.end-half
-        source(srcset="./images/hero/2.webp" type="image/webp")
+        source(srcset="./images/2.webp" type="image/webp")
         img(
-          src="./images/hero/2.jpg"
+          src="./images/2.jpg"
           alt="" title=""
           width="600" height="400"
           loading="lazy"
@@ -231,7 +250,13 @@ block content
         h3.headline
           | Сейчас в работе
         .vp-wrapper
-          iframe(src="https://rtsp.me/embed/AfKbB34A/" loading="lazy" width="600" height="450" frameborder="0" allowfullscreen)
+          iframe(
+            src="https://rtsp.me/embed/ASNiHYZ8/"
+            title="Онлайн трансляция работы малярно-кузовного цеха"
+            allowfullscreen
+            width="800" height="450"
+            loading="lazy"
+          )
 
     .container
       h3.headline
@@ -242,7 +267,7 @@ block content
           style=`--columns: ${count(reviews)};`
         )
           each review, i in reviews
-            li.item(id=`review${i+1}`)
+            li.item(id=`item${i+1}`)
               +review({
                 id: i+1,
                 title: review.title,

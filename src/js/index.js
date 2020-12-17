@@ -1,7 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 // import Cursor from './cursor';
 import Slideshow from './slideshow';
 import { horizontalScroll } from './carousel';
+// eslint-disable-next-line no-unused-vars
+import * as Counters from './counters';
 // import { parallaxImages } from './parallax';
 // import { revealText } from './text-reveal';
 import {
@@ -9,7 +10,7 @@ import {
   checkWebpFeature,
   checkSystem,
   isMobileDevice,
-  findByData
+  findByData,
 } from './utils';
 
 const os = checkSystem();
@@ -46,12 +47,16 @@ window.addEventListener('load', () => {
 
   /* eslint-disable no-unused-vars */
   const slideshow = new Slideshow('.slides');
-  const carousel1 = horizontalScroll(findByData('logos', 'id'), {
+  const carousel0 = horizontalScroll(findByData('logos0', 'id'), {
+    control: 'scroll',
+    position: 'offset'
+  });
+  const carousel1 = horizontalScroll(findByData('logos1', 'id'), {
     control: 'scroll'
   });
   const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
     control: 'dots',
-    // centered: true
+    // position: 'center'
   });
   // const reveal = revealText(selectAll('.reveal'));
   // const parallax = parallaxImages(selectAll('.parallax-image'));

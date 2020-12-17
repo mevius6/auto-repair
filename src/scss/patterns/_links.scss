@@ -5,10 +5,8 @@ a {
 
   &:link,
   &:visited {
-    &:not([class*='badge']) {
-      color: var(--link-text-color, var(--foreground));
-      transition: all 150ms ease-in-out;
-    }
+    color: var(--link-text-color, var(--foreground));
+    transition: all 150ms ease-in-out;
   }
 
   &:hover,
@@ -16,14 +14,14 @@ a {
   &:active {
     color: var(--link-text-color, var(--foreground));
 
-    &:not([class*='badge'], [class*='cta']) {
+    &:not([class*='cta']) {
       text-shadow: none;
       background:
         linear-gradient(
           to right,
-          #ff4d4d,
+          var(--light-red),
           calc(100% - (100% / 3 * 2)),
-          #a70000
+          var(--dark-red)
         );
 
       /* autoprefixer: ignore next */
@@ -37,7 +35,7 @@ a {
 
   &:focus-visible { outline: 2px dotted var(--foreground); }
 
-  &[href*='://']:not([class*='badge'], [class*='cta'])::after {
+  &[href*='://']:not([class*='cta'])::after {
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.75em;
     font-weight: 500;
@@ -56,10 +54,14 @@ a {
     line-height: 1.1;
     cursor: pointer;
 
-    background: linear-gradient(135deg, #f81717 0%, #7d0000 100%);
-    // background-color: #c00;
+    background:
+      linear-gradient(
+        135deg,
+        hsl(var(--torch-red)) 0%,
+        hsl(var(--maroon)) 100%
+      );
     border-radius: 0.5rem;
-    box-shadow: 0 0 2px hsl(0 0% 0% / 0.1), 0 4px 12px hsl(0 94.1% 53.1% / 0.5);
+    box-shadow: var(--glow);
     justify-content: space-around;
     align-items: center;
 
