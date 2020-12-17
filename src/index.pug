@@ -192,7 +192,13 @@ block content
     .container
       - let logos = 20
       .carousel(
-        data-id="logos"
+        data-id="logos0"
+        style={ '--columns': logos }
+      )
+        each logo in Array(logos)
+          .item
+      .carousel(
+        data-id="logos1"
         style={ '--columns': logos }
       )
         each logo in Array(logos)

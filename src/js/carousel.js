@@ -31,8 +31,24 @@ export const horizontalScroll = (section, vars = {}) => {
   gsap.set(wrap, {
     position: 'absolute',
     top: 0,
-    left: vars.centered ? `calc(50% - ${itemWidth/2}px)` : 0,
   });
+
+  if (vars.position) {
+    if (vars.position === 'center') {
+      gsap.set(wrap, {
+        left: `calc(50% - ${itemWidth/2}px)`
+      });
+    }
+    if (vars.position === 'offset') {
+      let wrapWidth = getWidth(wrap);
+
+      gsap.set(wrap, {
+        left: `calc(${wrapWidth}px - ${gutterVal * rootVal}px`
+      });
+    }
+  } else {
+    gsap.set(wrap, { left: 0 });
+  }
 
   const tl = gsap.timeline({
     defaults: {

@@ -23,7 +23,8 @@
     background-size: contain;
   }
 
-  &[data-id='logos'] {
+  &[data-id='logos0'],
+  &[data-id='logos1'] {
     --item-size: 3.5rem;
     --carousel-background: var(--foreground);
 

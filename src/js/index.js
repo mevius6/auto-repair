@@ -47,7 +47,11 @@ window.addEventListener('load', () => {
 
   /* eslint-disable no-unused-vars */
   const slideshow = new Slideshow('.slides');
-  const carousel1 = horizontalScroll(findByData('logos', 'id'), {
+  const carousel0 = horizontalScroll(findByData('logos0', 'id'), {
+    control: 'scroll',
+    position: 'offset'
+  });
+  const carousel1 = horizontalScroll(findByData('logos1', 'id'), {
     control: 'scroll'
   });
   const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
