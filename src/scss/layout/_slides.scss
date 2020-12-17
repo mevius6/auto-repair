@@ -49,7 +49,7 @@
       }
     }
 
-    &:nth-child(2) { --bg-position: bottom left; }
+    &:nth-child(2) { --bg-position: bottom center; }
   }
 
   &__text {
@@ -104,7 +104,7 @@
 
   &__control {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 0;
     display: flex;
     inline-size: 100%;
@@ -158,6 +158,11 @@
       &__slide {
         display: grid;
         padding-inline: var(--gutter);
+      }
+
+      &__control {
+        top: 50%;
+        bottom: unset;
       }
 
       &__counter {

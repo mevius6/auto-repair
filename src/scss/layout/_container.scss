@@ -73,8 +73,12 @@
   grid-template-columns: subgrid;
   grid-column: full;
   column-gap: inherit;
-  row-gap: 2.5rem;
+  row-gap: var(--spacer-3);
   padding-inline: var(--gutter);
+
+  @include config.respond('tablet') {
+    row-gap: var(--gutter);
+  }
 
   &--xl { max-inline-size: 1280px; }
 
@@ -191,9 +195,9 @@
 
     > section {
       inline-size: 100%;
-      margin-block: 60px;
+      margin-block: calc(var(--gutter) * 2);
 
-      > * + * { margin-block-start: var(--flow-space); }
+      > * + * { margin-block-start: var(--gutter); }
 
       iframe {
         filter: drop-shadow(0 10px 20px hsl(0 0% 0% / 0.2));
