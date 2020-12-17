@@ -45,6 +45,7 @@
       inline-size: var(--size);
       block-size: var(--size);
       margin-inline: auto;
+      filter: drop-shadow(0 4px 12px hsl(var(--torch-red) / 0.5));
       background-size: contain;
     }
   }

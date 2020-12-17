@@ -108,7 +108,7 @@ body {
   --spacer-4: 2.5rem; // ~40px
   --flow-space: var(--spacer-1);
   // https://drafts.csswg.org/css-align-3/#gutter
-  --gutter: var(--spacer-3);
+  --gutter: var(--spacer-1);
   --radii-1: 0.5rem; // ~8px
   --radii-2: 1rem; // ~16px
   --glow:
@@ -126,6 +126,10 @@ body {
   transition:
     color var(--duration) var(--easing),
     background-color var(--duration) var(--easing);
+
+  @include config.respond('tablet') {
+    --gutter: var(--spacer-3);
+  }
 }
 
 [data-hidden] {
