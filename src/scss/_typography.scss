@@ -125,6 +125,7 @@ article {
 [class*='headline'] {
   font-weight: 600;
   text-transform: uppercase;
+  font-feature-settings: 'case' 1;
 }
 
 [class$='subhead'] { font-weight: 500; }
