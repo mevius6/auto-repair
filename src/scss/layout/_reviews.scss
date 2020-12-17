@@ -10,7 +10,7 @@
   padding-inline: 2ch;
   flex-direction: column;
   border-radius: 1rem;
-  // box-shadow: 0 0 0 1px var(--foreground) inset;
+  box-shadow: 0 0 0 1px var(--foreground) inset;
   justify-content: space-between;
 
   &__header,
@@ -82,10 +82,10 @@
   --side-fade: 20;
 
   position: relative;
-  display: flex;
-  min-block-size: 30rem;
+  display: grid;
+  grid-template-columns: minmax(var(--max-col-size), 1fr);
+  grid-template-rows: minmax(30rem, 1fr);
   overflow: hidden;
-  flex-direction: column;
   grid-column: full;
 
   @include config.respond('tablet') {
@@ -131,18 +131,6 @@
   margin-block-start: 0;
   overflow: hidden;
   border-radius: 0.5rem;
-
-  &:hover > &__image {
-    // stylelint-disable-next-line selector-max-specificity
-    &:nth-child(1):not(:hover) {
-      clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 0% 0%);
-    }
-
-    // stylelint-disable-next-line selector-max-specificity
-    &:nth-child(2):not(:hover) {
-      clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 100% 100%);
-    }
-  }
 
   &__image {
     z-index: var(--zi, 1);
