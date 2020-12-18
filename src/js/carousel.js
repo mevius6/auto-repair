@@ -33,13 +33,13 @@ export const horizontalScroll = (section, vars = {}) => {
     top: 0,
   });
 
-  if (vars.position) {
-    if (vars.position === 'center') {
+  if (vars.offset) {
+    if (vars.offset === 'half') {
       gsap.set(wrap, {
         left: `calc(50% - ${itemWidth/2}px)`
       });
     }
-    if (vars.position === 'offset') {
+    if (vars.offset === 'full') {
       let wrapWidth = getWidth(wrap);
 
       gsap.set(wrap, {

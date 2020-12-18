@@ -49,14 +49,14 @@ window.addEventListener('load', () => {
   const slideshow = new Slideshow('.slides');
   const carousel0 = horizontalScroll(findByData('logos0', 'id'), {
     control: 'scroll',
-    position: 'offset'
+    offset: 'full'
   });
   const carousel1 = horizontalScroll(findByData('logos1', 'id'), {
     control: 'scroll'
   });
   const carousel2 = horizontalScroll(findByData('reviews', 'id'), {
     control: 'dots',
-    // position: 'center'
+    // offset: 'half'
   });
   // const reveal = revealText(selectAll('.reveal'));
   // const parallax = parallaxImages(selectAll('.parallax-image'));
