@@ -31,7 +31,7 @@ block vars
         'text': 'Кузовной ремонт и окраска автомобилей в рассрочку или кредит на выгодных условиях.',
         'icon': 'discount'
       }, {
-        'title': 'СМС-уведомления',
+        'title': 'СМС уведомления',
         'text': 'Оперативно информируем вас о статусе работ с вашим автомобилем.',
         'icon': 'phone'
       },
@@ -148,7 +148,7 @@ block content
 
   .grid
     .container
-      ul.content.counters(data-columns="3")
+      ul.counters.grid__content(data-columns="3")
         li
           | #[span.num.counter(data-count='12')]
           | #[span.overline Лет стабильной работы]
@@ -162,7 +162,7 @@ block content
     .container
       h3.headline
         | Преимущества работы с нами
-      section.cards.full(data-columns="4")
+      section.cards.grid__full(data-columns="4")
         each advantage in advantages
           +card({
             view: 'compact',
@@ -172,7 +172,7 @@ block content
           })
 
     .container
-      picture.start-half
+      picture.grid__start-half
         source(srcset="./images/1.webp" type="image/webp")
         img(
           src="./images/1.jpg"
@@ -180,7 +180,7 @@ block content
           width="600" height="400"
           loading="lazy"
         )
-      article.end-half.flow
+      article.grid__end-half.flow
         h3.headline
           | Полный спектр услуг
         each service in services
@@ -209,7 +209,7 @@ block content
         | Гарантия высокого качества
       p.desc
         | Современное оборудование и материалы, рекомендуемые ведущими производителями.
-      section.cards.content(data-columns="3")
+      section.cards.grid__content(data-columns="3")
         each guarantee in guarantees
           +card({
             view: 'compact',
@@ -219,7 +219,7 @@ block content
           })
 
     .container
-      article.start-half.flow
+      article.grid__start-half.flow
         h3.headline
           | Оценка ремонта по фото
         ul
@@ -236,7 +236,7 @@ block content
           href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
         )
           | Отправить фото
-      picture.end-half
+      picture.grid__end-half
         source(srcset="./images/2.webp" type="image/webp")
         img(
           src="./images/2.jpg"
@@ -246,7 +246,7 @@ block content
         )
 
     .container
-      section.center
+      section.grid__center
         h3.headline
           | Сейчас в работе
         .vp-wrapper

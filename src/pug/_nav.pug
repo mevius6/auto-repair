@@ -1,13 +1,83 @@
 append vars
+  - const domain = 'https://rusauto53.ru';
   -
-    const pages = [
+    const navItems = [
       {
-        'title': 'Главная',
-        'pathname': '.'
-      }
+        'title': 'Автомобили в наличии',
+        'pathname': 'cars',
+        'subItems': [
+          {
+            'title': 'Автомобили УАЗ',
+            'pathname': 'cars/uaz',
+          }, {
+            'title': 'Автомобили ГАЗ',
+            'pathname': 'cars/gaz',
+          }
+        ]
+      }, {
+        'title': 'Б/У автомобили',
+        'pathname': 'usedcars',
+      }, {
+        'title': 'Сервис',
+        'pathname': 'service',
+        'subItems': [
+          {
+            'title': 'Услуги автосервиса',
+            'pathname': 'service',
+          }, {
+            'title': 'Запись на ТО или ремонт',
+            'pathname': 'request',
+          }, {
+            'title': 'Калькулятор стоимости технического обслуживания',
+            'pathname': 'calculator',
+          }, {
+            'title': 'Каталог запчастей',
+            'pathname': 'parts',
+          }, {
+            'title': 'Статус готовности авто на сервисе',
+            'pathname': 'orders',
+          }, {
+            'title': 'Онлайн трансляция сервисной зоны',
+            'pathname': 'online',
+          }
+        ]
+      }, {
+        'title': 'Спецпредложения',
+        'pathname': 'offers'
+      }, {
+        'title': 'О компании',
+        'pathname': 'about',
+        'subItems': [
+          {
+            'title': 'О компании «РУС-АВТО»',
+            'pathname': 'about',
+          }, {
+            'title': 'История компании «РУС-АВТО»',
+            'pathname': 'history',
+          }, {
+            'title': 'Новости компании',
+            'pathname': 'news',
+          }, {
+            'title': 'Сотрудники компании «РУС-АВТО»',
+            'pathname': 'employees',
+          }, {
+            'title': 'Корпоративным клиентам',
+            'pathname': 'corporate',
+          }, {
+            'title': 'Реквизиты компании',
+            'pathname': 'requisites',
+          }, {
+            'title': 'Карьера',
+            'pathname': 'career',
+          }, {
+            'title': 'Контактная информация',
+            'pathname': 'contacts',
+          }
+        ]
+      },
     ];
 
-button.nav-button(type="button" aria-label="Show Menu" aria-controls="Nav")
+//- button.nav-button(type="button" aria-label="Show Menu" aria-controls="Nav")
   svg(
     aria-hidden="true" focusable="false"
     width="100%" height="100%" viewBox="0 0 100 100"
@@ -17,11 +87,35 @@ button.nav-button(type="button" aria-label="Show Menu" aria-controls="Nav")
     path.line(d="M 20,50 H 80")
     path.line(d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942")
 
-nav.nav#Nav
+//- nav.nav#Nav
   ul.nav__items(aria-label="Main Menu")
     each page in pages
       li.nav__item
         a.nav__link(href= page.pathname)
           span.nav__link-text
             | #{page.title}
-  include ./_footer
+
+nav#Nav
+  ul(aria-label="Main Menu")
+    each navItem, i in navItems
+      if navItem.subItems
+        li(class={'selected': (i+1) === 1})
+          a(href=`${domain}/${navItem.pathname}` id=`item0${i+1}` aria-current="page" target="_blank" rel="noopener")= navItem.title
+          button(
+            type="button"
+            id=`btnItem0${i+1}`
+            aria-controls=`SubItem0${i+1}`
+            aria-expanded="false"
+            aria-label="Show"
+            aria-labelledby=`btnItem0${i+1} item0${i+1}`
+            onclick="toggleSubNav(this.id);"
+          )
+            svg(xmlns="http://www.w3.org/2000/svg&quot;" viewBox="0 0 80 80" focusable="false")
+              path(d="M70.3 13.8L40 66.3 9.7 13.8z")
+          ul(id=`SubItem0${i+1}` style={'display': 'none'})
+            each subItem, i in navItem.subItems
+              li
+                a(href=`${domain}/${subItem.pathname}` target="_blank" rel="noopener")= subItem.title
+      else
+        li
+          a(href=`${domain}/${pathname}` id=`item0${i+1}`)= navItem.title

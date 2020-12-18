@@ -127,10 +127,11 @@ article {
 
 // [class*='subheadline'] {}
 
-[class*='overline'] {
+[class*='overline'],
+[class*='byline'] {
   font-size: 0.75rem;
-  // font-feature-settings: 'case' 1;
   font-weight: 500;
+  font-feature-settings: 'case' 1;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   opacity: 0.75;

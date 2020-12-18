@@ -1,55 +1,52 @@
 @use '../config';
 
 .page__footer {
-  @include config.flow(1em);
+  @include config.flow();
 
-  position: fixed;
-  bottom: 0;
-  z-index: 1010;
+  // position: fixed;
+  // bottom: 0;
+  // z-index: 1010;
   display: flex;
   inline-size: 100%;
-  padding-block: 1em;
+  padding-block: var(--spacer-2);
+  padding-inline: var(--gutter);
+  font-size: 0.75rem;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
   > ul {
-    &:nth-of-type(1) {
-      grid-template-columns: 1fr auto;
-      gap: 1em;
-    }
-    &:nth-of-type(2) { grid-template-columns: repeat(3, 1fr); }
-    &:nth-of-type(3) { grid-template-columns: repeat(2, 1fr); }
-  }
+    li { align-items: center; }
 
-  // .byline { font-style: italic; }
+    &:nth-of-type(1),
+    &:nth-of-type(2) {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: var(--spacer-1);
+    }
+  }
 
   a {
     --arrow: '';
     --size: 1.25rem;
 
     display: inline-block;
-    min-inline-size: var(--size);
-    block-size: var(--size);
     overflow: hidden;
     cursor: pointer;
 
-    [data-theme-style='light'] & { filter: invert(100%); }
-
     > [data-icon] {
       display: block;
-      inline-size: 100%;
-      block-size: 100%;
-      background-color: var(--foreground);
-      background-color: transparent;
+      inline-size: var(--size);
+      block-size: var(--size);
+      filter: opacity(0.7);
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
     }
 
-    @each $i in (vk, ig, ta, tel, at) {
+    @each $i in (vk, ig, tel, at) {
       > [data-icon=#{$i}] {
-        background-image: url('../images/#{$i}.svg');
+        // background-image: url('../images/#{$i}.svg');
+        background-image: var(--#{$i});
       }
     }
   }

@@ -4,6 +4,11 @@ import { selectAll, getWidth } from './utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: аннулирование анимации при изменении размера окна
+// window.addEventListener('resize', () => {
+//   anim.pause(0).invalidate().play();
+// });
+
 // ? https://w3c.github.io/aria-practices/#carousel
 export const horizontalScroll = (section, vars = {}) => {
   let columns = getComputedStyle(section).getPropertyValue('--columns');

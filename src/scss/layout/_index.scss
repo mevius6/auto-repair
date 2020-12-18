@@ -1,10 +1,11 @@
 // @forward 'map';
-// @forward 'nav';
+@forward 'nav';
+// @forward 'hero';
 @forward 'container';
 @forward 'carousel';
 @forward 'card';
-@forward 'hero';
 @forward 'reviews';
 @forward 'slides';
-// @forward 'header';
-// @forward 'footer';
+@forward 'header';
+// @forward 'aside';
+@forward 'footer';

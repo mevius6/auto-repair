@@ -1,5 +1,11 @@
 @use '../config';
 
+main {
+  min-inline-size: 100%;
+  // block-size: 100%;
+  // contain: size;
+}
+
 .grid {
   display: grid;
   grid-template-columns:
@@ -14,44 +20,45 @@
   column-gap: var(--gutter);
   row-gap: calc(var(--gutter) * 2);
   overflow-x: hidden;
+  contain: layout;
 
   @for $i from 1 through 10 {
     .container:nth-child(#{$i}) {
       grid-row: $i;
     }
   }
-}
 
-.content {
-  grid-column: content-start / content-end;
-  grid-column: content;
-  display: grid;
-}
-
-.full {
-  grid-column: full-start / full-end;
-  grid-column: full;
-}
-
-.start-half,
-.end-half,
-.center {
-  grid-column: content;
-}
-
-@include config.respond('tablet') {
-  .grid { row-gap: 7.5rem; }
-
-  .start-half {
-    grid-column: start-half-start / start-half-end;
+  &__content {
+    grid-column: content-start / content-end;
+    grid-column: content;
+    display: grid;
   }
 
-  .end-half {
-    grid-column: end-half-start / end-half-end;
+  &__full {
+    grid-column: full-start / full-end;
+    grid-column: full;
   }
 
-  .center {
-    grid-column: center-start / center-end;
+  &__start-half,
+  &__end-half,
+  &__center {
+    grid-column: content;
+  }
+
+  @include config.respond('tablet') {
+    & { row-gap: 7.5rem; }
+
+    &__start-half {
+      grid-column: start-half-start / start-half-end;
+    }
+
+    &__end-half {
+      grid-column: end-half-start / end-half-end;
+    }
+
+    &__center {
+      grid-column: center-start / center-end;
+    }
   }
 }
 
@@ -159,7 +166,7 @@
     }
   }
 
-  &:nth-child(6) .end-half { grid-row: 1; }
+  &:nth-child(6) .grid__end-half { grid-row: 1; }
 
   // Трансляция
   &:nth-child(7) {

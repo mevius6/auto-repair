@@ -1,11 +1,37 @@
+@use '../config';
+
 .page__header {
+  // position: absolute;
   position: fixed;
-  top: 10px;
+  // top: 10px;
   z-index: 1010;
   display: flex;
   width: 100%;
   height: min-content;
-  padding: 0 10px;
+  padding: 0 var(--gutter);
+  flex-direction: column;
+  background-color: hsl(var(--black) / 0.7);
+  transition: transform 200ms ease-in-out, opacity 200ms ease-out;
   align-items: center;
   justify-content: space-between;
+
+  &--hidden {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  .logo {
+    --arrow: '';
+
+    inline-size: 120px;
+    padding: 2ch 1ex;
+  }
+
+  @include config.respond('laptop') {
+    & {
+      flex-direction: row;
+    }
+
+    .logo { padding: 0; }
+  }
 }

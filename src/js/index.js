@@ -1,4 +1,6 @@
 // import Cursor from './cursor';
+// eslint-disable-next-line no-unused-vars
+import * as Nav from './nav';
 import Slideshow from './slideshow';
 import { horizontalScroll } from './carousel';
 // eslint-disable-next-line no-unused-vars

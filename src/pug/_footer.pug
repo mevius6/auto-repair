@@ -6,16 +6,13 @@
     }, {
       'icon': 'ig',
       'link': 'https://www.instagram.com/'
-    }, {
-      'icon': 'ta',
-      'link': 'https://www.tripadvisor.com/'
     }
   ]
 -
   const contacts = [
     {
       'icon': 'tel',
-      'tel': ''
+      'tel': '+7 950 686-23-58'
     }, {
       'icon': 'at',
       'email': appData.meta.email,
@@ -24,12 +21,17 @@
   ]
 
 footer.page__footer
-  ul
-    //- li.copy= `© ${new Date().getFullYear()}, ООО «${appData.meta.name}»`
-    li.copy= `© ${new Date().getFullYear()}`
-    li.logo(itemprop="name")= appData.meta.name
+  //- li.copy= `© ${new Date().getFullYear()}, ООО «${appData.meta.name}»`
+  p.overline
+    | © 2005–#{new Date().getFullYear()} ООО «Рус-Авто Сервис»
+  //-
+    a(href="https://rusauto53.ru/privacy/" target="_blank")
+      | Правовая информация
+  //-
+    a(href="https://rusauto53.ru/callback/" target="_blank" rel="noopener")
+      | Обратный звонок
 
-  ul.social
+  ul
     each item in social
       li
         a(href= item.link target="_blank" rel="noopener noreferrer")

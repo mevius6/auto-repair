@@ -223,9 +223,7 @@
     line-height: 1.25;
     box-shadow: none;
 
-    @media screen and (min-width: 21em) {
-      font-size: 14px;
-    }
+    // @media screen and (min-width: 21em) { font-size: 14px; }
 
     [data-theme-style='light'] & {
       background-color: hsl(var(--silver) / 0.5);
