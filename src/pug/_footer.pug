@@ -1,50 +1,26 @@
 -
-  const social = [
+  let social = [
     {
       'icon': 'vk',
-      'link': 'https://vk.com/'
+      'href': 'https://vk.com/rusauto53',
     }, {
       'icon': 'ig',
-      'link': 'https://www.instagram.com/'
-    }
-  ]
--
-  const contacts = [
-    {
-      'icon': 'tel',
-      'tel': '+7 950 686-23-58'
-    }, {
-      'icon': 'at',
-      'email': appData.meta.email,
-      'subject': ''
+      'href': 'https://www.instagram.com/',
     }
   ]
 
 footer.page__footer
-  //- li.copy= `© ${new Date().getFullYear()}, ООО «${appData.meta.name}»`
+  //- .copy= `© ${new Date().getFullYear()}, ООО «${appData.meta.name}»`
   p.overline
-    | © 2005–#{new Date().getFullYear()} ООО «Рус-Авто Сервис»
+    | © #{new Date().getFullYear()} «Рус-Авто»
   //-
     a(href="https://rusauto53.ru/privacy/" target="_blank")
       | Правовая информация
-  //-
-    a(href="https://rusauto53.ru/callback/" target="_blank" rel="noopener")
-      | Обратный звонок
 
-  ul
-    each item in social
-      li
-        a(href= item.link target="_blank" rel="noopener noreferrer")
-          span(data-icon= item.icon)
-  ul
-    each item in contacts
-      - let inner = item.tel || item.email;
-      li
-        a(
-          href=`${item.tel ? 'tel' : 'mailto'}:${inner}`
-          target="_blank" rel="noopener noreferrer"
-        )
-          span(data-icon= item.icon)
+  +list({
+    items: social,
+    ordered: false
+  })(class='social')
 
   span.byline
     | Сделано в «RMMR Studio»
