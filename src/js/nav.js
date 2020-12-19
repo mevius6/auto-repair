@@ -1,24 +1,18 @@
-(function(){
-  var doc = document.documentElement;
-  var w = window;
+(async () => {
+  const doc = document.documentElement;
 
-  var prevScroll = w.scrollY || doc.scrollTop;
-  var curScroll;
-  var direction = 0;
-  var prevDirection = 0;
+  let prevScroll = window.scrollY || window.scrollTop;
+  let curScroll;
+  let direction = 0;
+  let prevDirection = 0;
 
-  var header = document.querySelector('.page__header');
+  const header = document.querySelector('.page__header');
 
-  var checkScroll = function() {
-    curScroll = w.scrollY || doc.scrollTop;
-    if (curScroll > prevScroll) {
-      // up
-      direction = 2;
-    }
-    else if (curScroll < prevScroll) {
-      // down
-      direction = 1;
-    }
+  const checkScroll = () => {
+    curScroll = window.scrollY || doc.scrollTop;
+
+    if (curScroll > prevScroll) direction = 2;
+    else if (curScroll < prevScroll) direction = 1;
 
     if (direction !== prevDirection) {
       toggleHeader(direction, curScroll);
@@ -27,7 +21,7 @@
     prevScroll = curScroll;
   };
 
-  var toggleHeader = function(direction, curScroll) {
+  const toggleHeader = (direction, curScroll) => {
     if (direction === 2 && curScroll > 52) {
       header.classList.add('page__header--hidden');
       prevDirection = direction;
@@ -41,10 +35,7 @@
   window.addEventListener('scroll', checkScroll);
 })();
 
-
-// save some elements
-// using Array slice to convert NodeLists to Arrays, for ease of use later
-// with ES6, I'd just do [ ...buttons ] :)
+// eslint-disable-next-line no-unused-vars
 const pNav = document.getElementById("Nav");
 const buttons = Array.prototype.slice.call(document.querySelectorAll('button[aria-controls]'));
 const subMenus = Array.prototype.slice.call(document.querySelectorAll('button[aria-controls] + ul, button[aria-controls] + div'));
@@ -78,7 +69,7 @@ function closeAllSubNavs() {
 }
 
 // event handlers
-function handleButtonClick(event) {
+function handleButtonClick() {
   let button = this;
   let isOpen = button.getAttribute('aria-expanded') === 'true';
   if (isOpen) {
@@ -121,8 +112,8 @@ subMenus.forEach(function(subMenu) {
   subMenu.addEventListener('keydown', handleNavKeyDown);
 });
 
-// attach focusout listener to the parent of both the disclosure button
-// and the menu
+// attach focusout listener to the parent of both
+// the disclosure button and the menu
 let subNavContainers = Array.prototype.slice.call(document.querySelectorAll('#Nav > ul > li'));
 subNavContainers.forEach(function(navContainer) {
   navContainer.addEventListener('focusout', handleNavFocusOut);

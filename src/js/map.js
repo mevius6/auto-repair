@@ -58,7 +58,7 @@ const location = {
     DESC,
     'ул. Германа, 21а',
     '09&colon;00–19&colon;00',
-    '+7 950 686-23-58',
+    '+7 (816) 222-23-33',
     'https://goo.gl/maps/7EGiAjLzyrQvtxJB8'
   ),
   lat: 58.531446,
