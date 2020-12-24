@@ -1,4 +1,5 @@
 append vars
+  - const domain = 'https://rusauto53.ru';
   -
     const navItems = [
       {
@@ -86,14 +87,20 @@ append vars
     path.line(d="M 20,50 H 80")
     path.line(d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942")
 
-nav.nav#Nav
-  //- ul.nav__items>li.nav__item>a.nav__link>span.nav__link-text
+//- nav.nav#Nav
+  ul.nav__items(aria-label="Main Menu")
+    each page in pages
+      li.nav__item
+        a.nav__link(href= page.pathname)
+          span.nav__link-text
+            | #{page.title}
+
+nav#Nav
   ul(aria-label="Main Menu")
     each navItem, i in navItems
       if navItem.subItems
         li(class={'selected': (i+1) === 1})
-          a(href=`${appData.meta.domain}/${navItem.pathname}` id=`item0${i+1}` aria-current="page" target="_blank" rel="noopener")
-            | #{navItem.title}
+          a(href=`${domain}/${navItem.pathname}` id=`item0${i+1}` aria-current="page" target="_blank" rel="noopener")= navItem.title
           button(
             type="button"
             id=`btnItem0${i+1}`
@@ -105,12 +112,10 @@ nav.nav#Nav
           )
             svg(xmlns="http://www.w3.org/2000/svg&quot;" viewBox="0 0 80 80" focusable="false")
               path(d="M70.3 13.8L40 66.3 9.7 13.8z")
-          ul.flow(id=`SubItem0${i+1}` style={'display': 'none'})
+          ul(id=`SubItem0${i+1}` style={'display': 'none'})
             each subItem, i in navItem.subItems
               li
-                a(href=`${appData.meta.domain}/${subItem.pathname}` target="_blank" rel="noopener")
-                  | #{subItem.title}
+                a(href=`${domain}/${subItem.pathname}` target="_blank" rel="noopener")= subItem.title
       else
         li
-          a(href=`${appData.meta.domain}/${navItem.pathname}` id=`item0${i+1}`)
-            | #{navItem.title}
+          a(href=`${domain}/${pathname}` id=`item0${i+1}`)= navItem.title

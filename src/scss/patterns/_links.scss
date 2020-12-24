@@ -1,11 +1,7 @@
 @use '../config';
 
-$domain: 'rusauto53.ru';
-
 a {
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
 
   &:link,
   &:visited {
@@ -39,7 +35,7 @@ a {
 
   &:focus-visible { outline: 2px dotted var(--foreground); }
 
-  &[href*='://']:not([href*='#{$domain}'], [class*='cta'])::after {
+  &[href*='://']:not([class*='cta'])::after {
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.75em;
     font-weight: 500;
@@ -56,7 +52,8 @@ a {
     padding: 1ch 2ex;
     overflow: hidden;
     line-height: 1.1;
-    // cursor: pointer;
+    cursor: pointer;
+
     background:
       linear-gradient(
         135deg,
@@ -71,26 +68,5 @@ a {
     &:hover { filter: brightness(120%); }
 
     &:is(:focus, :active) { transform: translateY(1px); }
-  }
-
-  .social & { --arrow: ''; }
-
-  & > [data-icon] {
-    // --size: 1.25rem;
-    --size: calc(1rem + 0.25vw);
-    display: block;
-    inline-size: var(--size);
-    block-size: var(--size);
-    filter: opacity(0.7);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-  }
-
-  @each $i in (vk, ig, tel, at) {
-    > [data-icon=#{$i}] {
-      // background-image: url('../images/#{$i}.svg');
-      background-image: var(--#{$i});
-    }
   }
 }

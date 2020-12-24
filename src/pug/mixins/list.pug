@@ -1,15 +1,14 @@
 mixin items(arr)
   - let num = arr.length;
   each item, index in arr
-    if item.phone || item.mail || item.href
-      li
-        +link({
-          base: 'list',
-          phone: item.phone,
-          mail: item.mail,
-          href: item.href,
-          icon: item.icon,
-        })
+    if item.icon
+      li&attributes({'data-icon': item.icon})
+        if item.tel
+          a(href=`tel:${item.tel}`)= item.tel
+        if item.email
+          a(href=`mailto:${item.email}?subject=${item.subject}`)= item.email
+        else
+          | #{item.text}
     else if item.cost
       -
         const currency = new Intl.NumberFormat('ru', {
@@ -26,11 +25,7 @@ mixin items(arr)
         else
           | #{currency.format(item.cost)}
     else
-      if item.icon
-        li&attributes({'data-icon': item.icon})
-          | #{item.text}
-      else
-        li= item.text
+      li= item.text
 
 mixin list(props)
   if props.title
@@ -44,5 +39,5 @@ mixin list(props)
     )
       +items(props.items)
   else
-    ul.body(role="list")&attributes(attributes)
+    ul.body(role="list")
       +items(props.items)
