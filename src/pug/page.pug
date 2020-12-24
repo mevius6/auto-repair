@@ -8,6 +8,7 @@ html(class="no-js" dir="ltr" lang="ru")
     include ./_meta
     include ./_fonts
     link(rel="stylesheet" type="text/css" href="./scss/main.scss")
+    //- base(href= appData.meta.baseURL target="_blank")
     block head
   body.page.page--loading(itemscope itemtype="https://schema.org/WebPage")
     noscript
@@ -15,6 +16,7 @@ html(class="no-js" dir="ltr" lang="ru")
     include ./_header
     main(data-id= page.id)
       block content
+      include ./_aside
     include ./_footer
     //- include ./_cursor
 

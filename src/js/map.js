@@ -1,6 +1,18 @@
 import '../scss/layout/_map.scss';
 import L from './vendor/leaflet';
 
+let link = document.createElement('link');
+link.href = 'https://api.mapbox.com';
+link.rel = 'preconnect';
+link.crossOrigin = '';
+
+let script = document.createElement('script');
+script.src = 'https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js';
+script.async = true;
+
+document.head.appendChild(link);
+document.head.appendChild(script);
+
 // TODO: Использовать Mapbox Directions API и Geolocation API,
 // для построения маршрута (альтернатива Google Maps).
 // https://leafletjs.com/examples/mobile/
@@ -58,7 +70,7 @@ const location = {
     DESC,
     'ул. Германа, 21а',
     '09&colon;00–19&colon;00',
-    '+7 950 686-23-58',
+    '+7 (816) 222-23-33',
     'https://goo.gl/maps/7EGiAjLzyrQvtxJB8'
   ),
   lat: 58.531446,

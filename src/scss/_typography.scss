@@ -84,6 +84,14 @@ h4 {
   font-size: var(--px2rem);
   font-weight: 600;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter {
+  // text-shadow:
+  //   0 1px 1px hsl(var(--black) / 0.25),
+  //   0 1px 25px hsl(var(--black) / 0.75);
+  text-shadow: 0 1px 1px rgba(27, 31, 35, 0.25);
 }
 
 article {
@@ -144,13 +152,13 @@ article {
 
 [class$='body'] { font-weight: 400; }
 
-[class$='link'] { font-weight: 500; }
+// [class$='link'] { font-weight: 500; }
 
 [class*='cta'] {
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
-  // letter-spacing: 0.0625rem;
+  letter-spacing: 0.07812rem;
   letter-spacing: 1.25px;
 }
 
@@ -170,7 +178,6 @@ time { font-feature-settings: 'case' 1; }
   .num {
     // --px-size: 64;
     line-height: 1;
-    font-variant-numeric: tabular-nums;
   }
 
   h2 {

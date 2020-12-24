@@ -86,7 +86,6 @@
   min-block-size: 30rem;
   overflow: hidden;
   flex-direction: column;
-  grid-column: full;
 
   @include config.respond('tablet') {
     grid-column: content;

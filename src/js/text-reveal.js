@@ -44,7 +44,7 @@ export const revealText = (elems) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: parent,
-        start: '50% 80%',
+        start: 'top +=50%',
       },
       defaults: { duration: 1, ease: 'power4.out' },
     });

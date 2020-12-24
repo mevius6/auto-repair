@@ -1,0 +1,21 @@
+aside {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  .actions {
+    position: relative;
+
+    li {
+      --icon-size: calc(1rem + 0.25vw);
+
+      transition: transform 250ms ease-in-out;
+      transform: translateX(calc(100% - var(--icon-size)));
+
+      &:hover {
+        transform: translate(0);
+      }
+    }
+  }
+}

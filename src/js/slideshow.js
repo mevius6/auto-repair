@@ -25,7 +25,7 @@ export default class Slideshow {
     });
 
     document.addEventListener('keydown', (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       switch (e.key) {
         case 'ArrowLeft':
           this._slidePrev();

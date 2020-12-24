@@ -81,6 +81,7 @@
     font-weight: 500;
     line-height: 1;
     color: var(--foreground);
+    text-shadow: 0 1px 1px rgba(27, 31, 35, 0.25);
     // background-color: hsl(var(--black) / 0.7);
     background-color: hsl(var(--torch-red) / 0.7);
     backdrop-filter: blur(15px);

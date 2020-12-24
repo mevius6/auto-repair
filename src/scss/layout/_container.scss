@@ -72,6 +72,16 @@ main {
   }
 }
 
+.reveal-wrapper {
+  overflow: hidden;
+  text-align: center;
+  justify-self: center;
+}
+
+picture { overflow: hidden; }
+
+.desc { max-inline-size: 30ch; }
+
 .container {
   position: relative;
   display: grid;
@@ -88,21 +98,20 @@ main {
 
   &--xl { max-inline-size: 1280px; }
 
-  > h3,
-  h3 + .desc {
-    max-inline-size: 30ch;
-    grid-column: 1 / -1;
-    justify-self: center;
-    text-align: center;
-  }
-
   // Счётчики
   &:nth-child(1) {
+    // background:
+    //   linear-gradient(
+    //     180deg,
+    //     var(--red) 0%,
+    //     hsl(0 0% 0% / 0) 100%
+    //   );
     background:
       linear-gradient(
         180deg,
-        var(--red) 0%,
-        hsl(0 0% 0% / 0) 100%
+        hsl(var(--torch-red)),
+        calc(100% - (100% / 3 * 2)),
+        hsl(var(--torch-red) / 0)
       );
 
     li {

@@ -1,5 +1,8 @@
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { selectAll } from './utils';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // https://css-tricks.com/animating-number-counters/
 function animateValue(obj, start, end, duration) {
@@ -17,6 +20,7 @@ function animateValue(obj, start, end, duration) {
 
 const counters = selectAll('.counter');
 
+// eslint-disable-next-line no-unused-vars
 const st = ScrollTrigger.create({
   trigger: '.counters',
   start: 'top, bottom',

@@ -1,12 +1,47 @@
+-
+  let listItems = [
+    {
+      // 'icon': 'tel',
+      'phone': '+7 (816) 222-23-33',
+    },
+    // {
+    //   'icon': 'at',
+    //   'email': {
+    //     'to': appData.meta.email,
+    //     'subject': '',
+    //     'body': 'Добрый день!',
+    //   },
+    // },
+    // {
+    //   'icon': 'tel',
+    //   'href': 'https://rusauto53.ru/callback/',
+    //   // 'text': 'Обратный звонок',
+    // }
+  ]
+
 header.page__header
-  //- theme-switch
-  a.logo(
-    href="https://rusauto53.ru"
-    title="Автосалон РУС-АВТО | Официальный дилер автомобилей УАЗ и ГАЗ в Великом Новгороде"
-    target="_blank" rel="noopener noreferrer"
-  )
-    img(
-      src="./images/logo.png"
-      alt="Автосалон РУС-АВТО | Официальный дилер автомобилей УАЗ и ГАЗ в Великом Новгороде"
+  div(itemscope itemtype="https://schema.org/AutoRepair")
+    span(itemprop="name" data-hidden) Малярно-кузовной цех «Рус-Авто»
+    //- span(itemprop="description") Малярно-кузовной цех
+    a.logo(
+      href= appData.meta.domain
+      title="Автосалон РУС-АВТО"
+      rel="noopener"
     )
+      picture
+        source(srcset="./images/logo.webp" type="image/webp")
+        img(
+          itemprop="logo"
+          src="./images/logo.png"
+          alt="Автосалон РУС-АВТО"
+        )
+    div(itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress" data-hidden)
+      span(itemprop="streetAddress") ул. Германа, 21а, заезд с ул. Октябрьская
+      span(itemprop="addressLocality") Великий Новгород
+
+    +list({
+      items: listItems,
+      ordered: false
+    })(class='contacts')
+
   include ./_nav

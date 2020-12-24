@@ -67,7 +67,6 @@
     display: inline-flex;
     column-gap: 0;
     place-self: center;
-    grid-column: 1 / -1;
 
     & > * + * { margin-inline-start: calc(var(--dot-size)); }
 

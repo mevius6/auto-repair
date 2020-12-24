@@ -15,40 +15,16 @@
   justify-content: space-between;
   align-items: center;
 
-  > ul {
+  .social {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+
+    > * + * {
+      padding-inline-start: var(--spacer-1);
+      border-inline-start: 1px solid hsl(var(--offwhite) / 0.25);
+    }
+
     li { align-items: center; }
-
-    &:nth-of-type(1),
-    &:nth-of-type(2) {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: var(--spacer-1);
-    }
-  }
-
-  a {
-    --arrow: '';
-    --size: 1.25rem;
-
-    display: inline-block;
-    overflow: hidden;
-    cursor: pointer;
-
-    > [data-icon] {
-      display: block;
-      inline-size: var(--size);
-      block-size: var(--size);
-      filter: opacity(0.7);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-    }
-
-    @each $i in (vk, ig, tel, at) {
-      > [data-icon=#{$i}] {
-        // background-image: url('../images/#{$i}.svg');
-        background-image: var(--#{$i});
-      }
-    }
   }
 
   @include config.respond('tablet') {

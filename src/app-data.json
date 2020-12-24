@@ -1,6 +1,7 @@
 {
   "meta": {
-    "domain": "https://auto-repair.vercel.app",
+    "baseURL": "https://rusauto53.ru/mkc",
+    "domain": "https://rusauto53.ru",
     "email": "sales@rusauto.ru",
     "name": "Малярно-кузовной цех «Рус-Авто»",
     "links": {

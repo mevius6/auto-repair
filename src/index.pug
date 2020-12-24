@@ -1,9 +1,5 @@
 extends ./pug/page
 
-append head
-  link(rel="preconnect" href="https://api.mapbox.com" crossorigin)
-  script(async src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js")
-
 block vars
   - let page = appData.pages.index;
   -
@@ -28,7 +24,7 @@ block vars
         'icon': 'speed'
       }, {
         'title': 'Ремонт в кредит',
-        'text': 'Кузовной ремонт и окраска автомобилей в рассрочку или кредит на выгодных условиях.',
+        'text': 'Кузовной ремонт и окраска автомобиля в рассрочку или кредит на выгодных условиях.',
         'icon': 'discount'
       }, {
         'title': 'СМС уведомления',
@@ -75,7 +71,7 @@ block vars
       }, {
         'rating': '5',
         'title': 'Volkswagen',
-        'text': 'Хочу сказать спасибо Андрею, Владимиру и остальным ребятам которые восстановили нашу машинку, за их отличный подход к ситуации.',
+        'text': 'Хочу поблагодарить весь персонал автосервиса за качественную работу и внимательное отношение. Обращался не один раз, и всегда оставался доволен и работой, и уровнем обслуживания.',
         'date': '11.10.20',
         'user': {
           'name': 'Дмитрий Сергеев',
@@ -84,7 +80,7 @@ block vars
       }, {
         'rating': '5',
         'title': 'Hyundai',
-        'text': 'Всегда на связи и всё доходчиво объясняли. Спасибо вам большое за ваше терпение и обслуживание, рекомендую всем кузовной центр «Рус-Авто».',
+        'text': 'Очень хороший автосервис. Нет порядком надоевших очередей, внимательное отношение к клиентам. Всегда выполняют свою работу на 5 баллов.',
         'date': '10.09.20',
         'user': {
           'name': 'Владимир Донцов',
@@ -95,46 +91,31 @@ block vars
   -
     const services = [
       {
-        'listItems': [
-          {
-            'text': 'Кузовной ремонт',
-          }, {
-            'text': 'Восстановление геометрии кузова',
-          }, {
-            'text': 'Сварочные работы',
-          }, {
-            'text': 'Ремонт пластиковых деталей',
-          }, {
-            'text': 'Полная и локальная покраска автомобиля',
-          }, {
-            'text': 'Замена и полировка стекол и фар',
-          },
-        ]
-      }
-    ];
-  //-
-    const services = [
-      {
-        'listItems': [
-          {
-            'text': 'Кузовной ремонт',
-          }, {
-            'text': 'Восстановление геометрии кузова',
-          }, {
-            'text': 'Сварочные работы',
-          },
-        ]
+        'text': 'Кузовной ремонт',
       }, {
-        'listItems': [
-          {
-            'text': 'Ремонт пластиковых деталей',
-          }, {
-            'text': 'Полная и локальная покраска автомобиля',
-          }, {
-            'text': 'Замена и полировка стекол и фар',
-          },
-        ]
-      }
+        'text': 'Восстановление геометрии кузова',
+      }, {
+        'text': 'Сварочные работы',
+      }, {
+        'text': 'Ремонт пластиковых деталей',
+      }, {
+        'text': 'Полная и локальная покраска автомобиля',
+      }, {
+        'text': 'Замена и полировка стекол и фар',
+      },
+    ];
+  -
+    const actions = [
+      {
+        'phone': '+7 (950) 686-23-58',
+        'text': 'Сохраните наш номер',
+      }, {
+        'text': 'Найдите нас в WhatsApp',
+      }, {
+        'text': 'Пришлите фото своего автомобиля',
+      }, {
+        'text': 'Получите рассчёт стоимости и сроки выполнения работ',
+      },
     ];
   - const count = arr => arr.length;
 
@@ -160,8 +141,9 @@ block content
           | #[span.overline Выполненных работ]
 
     .container
-      h3.headline
-        | Преимущества работы с нами
+      .reveal-wrapper.grid__content
+        h3.headline.reveal(data-splitting='lines')
+          | Преимущества работы с нами
       section.cards.grid__full(data-columns="4")
         each advantage in advantages
           +card({
@@ -172,7 +154,8 @@ block content
           })
 
     .container
-      picture.grid__start-half
+      picture.image-wrapper.grid__start-half
+        //- source(data-srcset="./images/1.webp" type="image/webp")
         source(srcset="./images/1.webp" type="image/webp")
         img(
           src="./images/1.jpg"
@@ -181,13 +164,13 @@ block content
           loading="lazy"
         )
       article.grid__end-half.flow
-        h3.headline
-          | Полный спектр услуг
-        each service in services
-          +list({
-            items: service.listItems,
-            ordered: false
-          })
+        .reveal-wrapper
+          h3.headline.reveal(data-splitting='lines')
+            | Полный спектр услуг
+        +list({
+          items: services,
+          ordered: false
+        })
 
     .container
       - let logos = 20
@@ -205,10 +188,12 @@ block content
           .item
 
     .container
-      h3.headline
-        | Гарантия высокого качества
-      p.desc
-        | Современное оборудование и материалы, рекомендуемые ведущими производителями.
+      .reveal-wrapper.grid__content
+        h3.headline.reveal(data-splitting='lines')
+          | Гарантия высокого качества
+      .reveal-wrapper.grid__center
+        p.desc(data-splitting='lines')
+          | Современное оборудование и материалы, рекомендуемые ведущими производителями.
       section.cards.grid__content(data-columns="3")
         each guarantee in guarantees
           +card({
@@ -220,23 +205,20 @@ block content
 
     .container
       article.grid__start-half.flow
-        h3.headline
-          | Оценка ремонта по фото
-        ul
-          li
-            | #[a(href="tel:+79506862358") Сохраните наш номер +7 950 686-23-58]
-          li
-            | Найдите нас в WhatsApp
-          li
-            | Пришлите фото своего автомобиля
-          li
-            | Получите рассчёт стоимости и сроки выполнения работ
+        .reveal-wrapper
+          h3.headline.reveal(data-splitting='lines')
+            | Оценка ремонта по фото
+        +list({
+          items: actions,
+          ordered: false
+        })
         a.cta(
           aria-label="Отправить фото"
           href="https://api.whatsapp.com/send?phone=79506862358&text=Добрый%20день!" target="_blank" rel="noopener noreferrer"
         )
           | Отправить фото
-      picture.grid__end-half
+      picture.image-wrapper.grid__end-half
+        //- source(data-srcset="./images/2.webp" type="image/webp")
         source(srcset="./images/2.webp" type="image/webp")
         img(
           src="./images/2.jpg"
@@ -247,8 +229,9 @@ block content
 
     .container
       section.grid__center
-        h3.headline
-          | Сейчас в работе
+        .reveal-wrapper
+          h3.headline.reveal(data-splitting='lines')
+            | Сейчас в работе
         .vp-wrapper
           iframe(
             src="https://rtsp.me/embed/ASNiHYZ8/"
@@ -259,9 +242,10 @@ block content
           )
 
     .container
-      h3.headline
-        | Нас рекомендуют!
-      .column-wrapper
+      .reveal-wrapper.grid__content
+        h3.headline.reveal(data-splitting='lines')
+          | Нас рекомендуют!
+      .column-wrapper.grid__full
         ul.carousel(
           data-id="reviews"
           style=`--columns: ${count(reviews)};`
@@ -277,7 +261,7 @@ block content
                 avatar: review.user.avatar,
                 username: review.user.name,
               })
-      ul.carousel-control
+      ul.carousel-control.grid__center
         each i in Array.from(Array(count(reviews)).keys())
           li
             input(type="radio" name="position")&attributes({
