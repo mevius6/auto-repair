@@ -28,12 +28,6 @@ main {
     }
   }
 
-  &__content {
-    grid-column: content-start / content-end;
-    grid-column: content;
-    display: grid;
-  }
-
   &__full {
     grid-column: full-start / full-end;
     grid-column: full;
@@ -41,8 +35,9 @@ main {
 
   &__start-half,
   &__end-half,
-  &__center {
-    grid-column: content;
+  &__center,
+  &__content {
+    grid-column: full;
   }
 
   @include config.respond('tablet') {
@@ -50,14 +45,23 @@ main {
 
     &__start-half {
       grid-column: start-half-start / start-half-end;
+      grid-column: start-half;
     }
 
     &__end-half {
       grid-column: end-half-start / end-half-end;
+      grid-column: end-half;
+    }
+
+    &__content {
+      grid-column: content-start / content-end;
+      grid-column: content;
+      display: grid;
     }
 
     &__center {
       grid-column: center-start / center-end;
+      grid-column: center;
     }
   }
 }
@@ -71,16 +75,6 @@ main {
     }
   }
 }
-
-.reveal-wrapper {
-  overflow: hidden;
-  text-align: center;
-  justify-self: center;
-}
-
-picture { overflow: hidden; }
-
-.desc { max-inline-size: 30ch; }
 
 .container {
   position: relative;
@@ -100,12 +94,6 @@ picture { overflow: hidden; }
 
   // Счётчики
   &:nth-child(1) {
-    // background:
-    //   linear-gradient(
-    //     180deg,
-    //     var(--red) 0%,
-    //     hsl(0 0% 0% / 0) 100%
-    //   );
     background:
       linear-gradient(
         180deg,
@@ -145,6 +133,7 @@ picture { overflow: hidden; }
       --flow-space: 1.5rem;
 
       display: flex;
+      padding: var(--spacer-1);
       flex-direction: column;
       align-items: flex-start;
     }
@@ -209,9 +198,6 @@ picture { overflow: hidden; }
     }
   }
 
-  // Истории клиентов
-  // &:nth-child(8) {}
-
   // Карта
   &:nth-child(9) {
     block-size: 80vh;
@@ -219,3 +205,13 @@ picture { overflow: hidden; }
     > div { grid-column: full; }
   }
 }
+
+.desc { max-inline-size: 30ch; }
+
+.reveal-wrapper {
+  overflow: hidden;
+  text-align: center;
+  justify-self: center;
+}
+
+picture { overflow: hidden; }

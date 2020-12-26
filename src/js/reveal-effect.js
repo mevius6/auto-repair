@@ -1,7 +1,7 @@
-import { revealText } from './text-reveal';
-import { revealImage } from './image-reveal';
-import { revealCard } from './card-reveal';
-import { revealList } from './list-reveal';
+import { revealImage } from './reveal-image';
+import { revealText } from './reveal-text';
+import { revealCard } from './reveal-card';
+import { revealList } from './reveal-list';
 
 export const reveal = (elems) => {
   let el = elems[0];

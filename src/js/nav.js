@@ -1,4 +1,4 @@
-import { selectAll } from './utils';
+import { selectAll, waitForTime } from './utils';
 
 // header show/hide
 (async () => {
@@ -147,6 +147,19 @@ subNavContainers.forEach(function (navContainer) {
 //   pNav.dataset.open = !isExpanded;
 // }
 
+const discloseItem = (item, speed, index, vars = {}) => {
+  let anim = item.animate(
+    {
+      transform: ['translateY(24px)', 'translateY(0)'],
+      opacity: [0, 1],
+    }, {
+      delay: speed * (index + 1),
+      fill: 'forwards',
+      duration: speed * 5,
+    }
+  );
+  if (vars.reverse) anim.effect.updateTiming({ direction: 'reverse' });
+}
 
 // Toggle Menu
 const menuToggle = document.querySelector('.nav__toggle');
@@ -158,22 +171,25 @@ menuToggle.innerHTML =
 menuToggle.addEventListener('click', (e) => {
   e.preventDefault();
 
+  [...menu.childNodes].forEach((item, i) => discloseItem(item, 35, i) );
+
   if (menu.classList.contains('is-active')) {
     menuToggle.innerHTML =
       '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M0 5.5h15m-15-4h15m-15 8h15m-15 4h15" stroke="currentColor"></path></svg>';
-    menu.style.opacity = '0';
-    menu.style.visibility = 'hidden';
-    menu.style.transform = 'translateX(100%)';
 
-    setTimeout(() => {
-      menu.classList.remove('is-active');
-      menu.style.opacity = '';
-      menu.style.visibility = '';
-      menu.style.transform = '';
-    }, 300);
+    [...menu.childNodes].forEach((item, i) => {
+      discloseItem(item, 35, i, { reverse: true })
+    });
+
+    deactivate();
   } else {
     menu.classList.add('is-active');
     menuToggle.innerHTML =
       '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.793 7.5L1.146 1.854l.708-.708L7.5 6.793l5.646-5.647.708.708L8.207 7.5l5.647 5.646-.707.707L7.5 8.207l-5.646 5.646-.708-.707L6.793 7.5z" fill="currentColor"></path></svg>';
   }
 });
+
+async function deactivate() {
+  await waitForTime(400);
+  menu.classList.remove('is-active');
+}

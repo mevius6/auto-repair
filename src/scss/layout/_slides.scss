@@ -74,7 +74,7 @@
 
   &__counter {
     position: absolute;
-    top: var(--gutter);
+    top: var(--spacer-4);
     left: var(--gutter);
     display: flex;
     padding: 2rem 0.5rem;
