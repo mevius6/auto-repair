@@ -139,7 +139,7 @@ nav { width: auto; }
     --flow-space: 0;
 
     position: absolute;
-    top: var(--offset);
+    top: 100%;
     left: 0;
     z-index: 1020;
     display: block;
@@ -189,7 +189,10 @@ nav { width: auto; }
       &:last-child { border-radius: inherit; }
     }
 
-    &__subitems { width: auto; }
+    &__subitems {
+      top: var(--offset);
+      width: auto;
+    }
   }
 
   @include config.respond('laptop') {
