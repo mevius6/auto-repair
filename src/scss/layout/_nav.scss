@@ -1,14 +1,9 @@
 @use '../config';
 
-@keyframes slideInBottom {
-  0% {
+@keyframes fadeInBottom {
+  from {
     opacity: 0;
     transform: translateY(24px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 
@@ -47,7 +42,7 @@ nav { width: auto; }
 
   &__items {
     display: flex;
-    flex-wrap: no-wrap; /* RWD */
+    flex-wrap: no-wrap; // RWD
     justify-content: space-evenly;
     align-items: stretch;
 
@@ -69,13 +64,15 @@ nav { width: auto; }
   }
 
   &__item {
+    --r: var(--radius-2);
+
     position: relative;
     z-index: var(--zi);
     display: flex;
     background-color: hsl(var(--black) / 0.95);
     opacity: var(--alpha, 0);
     transition: opacity 150ms ease-in-out;
-    flex: 1 1 auto; /* RWD */
+    flex: 1 1 auto; // RWD
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
@@ -83,8 +80,8 @@ nav { width: auto; }
     // :where(:not(:hover))
     :hover > &:not(:hover) { --alpha: 0.75; }
 
-    &:first-child { border-radius: var(--radii-2) var(--radii-2) 0 0; }
-    &:last-child { border-radius: 0 0 var(--radii-2) var(--radii-2); }
+    &:first-child { border-radius: var(--r) var(--r) 0 0; }
+    &:last-child { border-radius: 0 0 var(--r) var(--r); }
 
     & > * { flex: 1 1 auto; }
 
@@ -159,18 +156,21 @@ nav { width: auto; }
   }
 
   &__subitem {
+    --r: var(--radius-1);
     --speed: 200ms;
     --delay: calc(var(--i, 0) * var(--speed));
 
     background-color: hsl(var(--black) / 0.95);
-    animation: slideInBottom var(--speed) ease-out var(--delay) both;
+    opacity: 1;
+    transform: translate(0);
+    animation: fadeInBottom var(--speed) ease-out var(--delay) both;
 
     @for $i from 1 through 10 {
       &:nth-child(#{$i}) { --i: #{$i * 0.25}; }
     }
 
-    &:first-child { border-radius: var(--radii-1) var(--radii-1) 0 0; }
-    &:last-child { border-radius: 0 0 var(--radii-1) var(--radii-1); }
+    &:first-child { border-radius: var(--r) var(--r) 0 0; }
+    &:last-child { border-radius: 0 0 var(--r) var(--r); }
   }
 
   @include config.respond('tablet') {
@@ -185,7 +185,7 @@ nav { width: auto; }
       background-color: hsl(var(--black) / 0);
 
       &:first-child,
-      &:last-child { border-radius: inherit; }
+      &:last-child { --r: inherit; }
     }
 
     &__subitems {
@@ -196,7 +196,7 @@ nav { width: auto; }
 
   @include config.respond('laptop') {
     &__items {
-      flex-wrap: wrap; /* RWD */
+      flex-wrap: wrap; // RWD
     }
 
     &__item:last-child > ul {

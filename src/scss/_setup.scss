@@ -115,8 +115,8 @@ body {
   --flow-space: var(--spacer-1);
   // https://drafts.csswg.org/css-align-3/#gutter
   --gutter: var(--spacer-1);
-  --radii-1: 0.5rem; // ~8px
-  --radii-2: 1rem; // ~16px
+  --radius-1: 0.5rem; // ~8px
+  --radius-2: 1rem; // ~16px
   --glow:
     0 0 2px hsl(0 0% 0% / 0.1),
     0 4px 12px hsl(var(--torch-red) / 0.5);
