@@ -73,20 +73,18 @@ nav { width: auto; }
     z-index: var(--zi);
     display: flex;
     background-color: hsl(var(--black) / 0.95);
-    opacity: var(--alpha, 1);
+    opacity: var(--alpha, 0);
     transition: opacity 150ms ease-in-out;
     flex: 1 1 auto; /* RWD */
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
 
+    // :where(:not(:hover))
+    :hover > &:not(:hover) { --alpha: 0.75; }
+
     &:first-child { border-radius: var(--radii-2) var(--radii-2) 0 0; }
     &:last-child { border-radius: 0 0 var(--radii-2) var(--radii-2); }
-
-    @media (hover: hover) {
-      // :where(:not(:hover))
-      :hover > &:not(:hover) { --alpha: 0.75; }
-    }
 
     & > * { flex: 1 1 auto; }
 
@@ -183,6 +181,7 @@ nav { width: auto; }
     }
 
     &__item {
+      --alpha: 1;
       background-color: hsl(var(--black) / 0);
 
       &:first-child,
