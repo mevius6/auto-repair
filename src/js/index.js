@@ -10,7 +10,7 @@ import {
   checkBrowser,
   checkWebpFeature,
   checkSystem,
-  isMobileDevice,
+  // isMobileDevice,
   supportsCssVars,
   selectAll,
   findByData,
@@ -40,9 +40,9 @@ checkWebpFeature('lossy')
     root.classList.add(imageFormat);
   });
 
-isMobileDevice()
-  .then(() => (root.dataset.device = 'mobile'))
-  .catch(() => (root.dataset.device = 'desktop'));
+// isMobileDevice()
+//   .then(() => (root.dataset.device = 'mobile'))
+//   .catch(() => (root.dataset.device = 'desktop'));
 
 window.addEventListener('load', () => {
   root.classList.remove('no-js');
