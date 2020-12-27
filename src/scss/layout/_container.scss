@@ -18,7 +18,7 @@ main {
     [full-end];
   grid-template-rows: minmax(min-content, 1fr);
   column-gap: var(--gutter);
-  row-gap: calc(var(--gutter) * 2);
+  row-gap: 3.75rem;
   overflow-x: hidden;
   contain: layout;
 
@@ -133,7 +133,7 @@ main {
       --flow-space: 1.5rem;
 
       display: flex;
-      padding: var(--spacer-1);
+      padding-inline: var(--spacer-1);
       flex-direction: column;
       align-items: flex-start;
     }

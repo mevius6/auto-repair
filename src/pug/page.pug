@@ -13,6 +13,7 @@ html(class="no-js" dir="ltr" lang="ru")
   body.page.page--loading(itemscope itemtype="https://schema.org/WebPage")
     noscript
       | #[h2 В вашем браузере необходимо включить JavaScript.]
+    include ./_message
     include ./_header
     main(data-id= page.id)
       block content

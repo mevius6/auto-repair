@@ -11,6 +11,7 @@ import {
   checkWebpFeature,
   checkSystem,
   isMobileDevice,
+  supportsCssVars,
   selectAll,
   findByData,
 } from './utils';
@@ -24,6 +25,10 @@ const doc = document,
 
 root.setAttribute('data-theme-style', 'dark');
 
+supportsCssVars()
+  .then(() => root.classList.add('css-vars'))
+  .catch(() => root.classList.add('no-css-vars'));
+
 let imageFormat = '';
 checkWebpFeature('lossy')
   .then(() => {
@@ -36,8 +41,8 @@ checkWebpFeature('lossy')
   });
 
 isMobileDevice()
-  .then(() => root.dataset.device = 'mobile')
-  .catch(() => root.dataset.device = 'desktop');
+  .then(() => (root.dataset.device = 'mobile'))
+  .catch(() => (root.dataset.device = 'desktop'));
 
 window.addEventListener('load', () => {
   root.classList.remove('no-js');
