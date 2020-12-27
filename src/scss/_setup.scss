@@ -147,8 +147,6 @@ body {
 }
 
 .browser-update {
-  --arrow: '';
-
   position: fixed;
   top: 0;
   left: 0;
@@ -177,6 +175,7 @@ body {
   &__brands { display: inline-block; }
 
   &__brand {
+    // --arrow: '';
     display: inline-block;
     width: calc(2rem + 2vw);
     height: calc(2rem + 2vw);
