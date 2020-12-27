@@ -10,8 +10,8 @@ import {
   checkBrowser,
   checkWebpFeature,
   checkSystem,
-  // isMobileDevice,
-  supportsCssVars,
+  isMobileDevice,
+  // supportsCssVars,
   selectAll,
   findByData,
 } from './utils';
@@ -25,9 +25,9 @@ const doc = document,
 
 root.setAttribute('data-theme-style', 'dark');
 
-supportsCssVars()
-  .then(() => root.classList.add('css-vars'))
-  .catch(() => root.classList.add('no-css-vars'));
+// supportsCssVars()
+//   .then(() => root.classList.add('css-vars'))
+//   .catch(() => root.classList.add('no-css-vars'));
 
 let imageFormat = '';
 checkWebpFeature('lossy')
@@ -40,9 +40,9 @@ checkWebpFeature('lossy')
     root.classList.add(imageFormat);
   });
 
-// isMobileDevice()
-//   .then(() => (root.dataset.device = 'mobile'))
-//   .catch(() => (root.dataset.device = 'desktop'));
+isMobileDevice()
+  .then(() => (root.dataset.device = 'mobile'))
+  .catch(() => (root.dataset.device = 'desktop'));
 
 window.addEventListener('load', () => {
   root.classList.remove('no-js');
