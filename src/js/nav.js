@@ -37,6 +37,21 @@ import { selectAll, waitForTime } from './utils';
   window.addEventListener('scroll', checkScroll, false);
 })();
 
+// WAAPI
+const discloseItem = (item, speed, index, vars = {}) => {
+  let anim = item.animate(
+    {
+      transform: ['translateY(24px)', 'translateY(0)'],
+      opacity: [0, 1],
+    }, {
+      delay: speed * (index + 1),
+      fill: 'forwards',
+      duration: speed * 5,
+    }
+  );
+  if (vars.reverse) anim.effect.updateTiming({ direction: 'reverse' });
+}
+
 const pNav = document.getElementById('Nav');
 const buttons = selectAll('button[aria-controls]');
 const subMenus = selectAll(
@@ -52,6 +67,10 @@ function openSubNav(buttonEl) {
     buttonEl.setAttribute('aria-expanded', 'true');
     buttonEl.setAttribute('aria-label', 'Hide');
     navEl.style.display = 'block';
+
+    // [...navEl.childNodes].forEach((item, i) => {
+    //   discloseItem(item, 35, i)
+    // });
   }
 }
 
@@ -63,6 +82,11 @@ function closeSubNav(buttonEl) {
     buttonEl.setAttribute('aria-expanded', 'false');
     buttonEl.setAttribute('aria-label', 'Show');
     navEl.style.display = 'none';
+
+    // [...navEl.childNodes].forEach((item, i) => {
+    //   discloseItem(item, 35, i, { reverse: true })
+    //   item.parentNode.display = 'none';
+    // });
   }
 }
 
@@ -146,20 +170,6 @@ subNavContainers.forEach(function (navContainer) {
 //
 //   pNav.dataset.open = !isExpanded;
 // }
-
-const discloseItem = (item, speed, index, vars = {}) => {
-  let anim = item.animate(
-    {
-      transform: ['translateY(24px)', 'translateY(0)'],
-      opacity: [0, 1],
-    }, {
-      delay: speed * (index + 1),
-      fill: 'forwards',
-      duration: speed * 5,
-    }
-  );
-  if (vars.reverse) anim.effect.updateTiming({ direction: 'reverse' });
-}
 
 // Toggle Menu
 const menuToggle = document.querySelector('.nav__toggle');

@@ -101,7 +101,7 @@ nav { width: auto; }
       inline-size: 100%;
       block-size: 100%;
       fill: var(--accent);
-      transition: transform 0.25s ease-in;
+      transition: transform 250ms ease-in;
       transform-origin: center 45%;
     }
 
@@ -122,6 +122,7 @@ nav { width: auto; }
 
       &[aria-expanded='true'] svg {
         transform: rotate(180deg);
+        // transform: scale(-1);
       }
     }
   }

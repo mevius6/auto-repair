@@ -136,6 +136,10 @@ main {
       padding-inline: var(--spacer-1);
       flex-direction: column;
       align-items: flex-start;
+
+      @include config.respond('tablet') {
+        padding-inline: 0;
+      }
     }
 
     li {

@@ -11,7 +11,6 @@ import {
   checkWebpFeature,
   checkSystem,
   isMobileDevice,
-  // supportsCssVars,
   selectAll,
   findByData,
 } from './utils';

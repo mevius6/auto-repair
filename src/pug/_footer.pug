@@ -11,8 +11,9 @@
 
 footer.page__footer
   //- .copy= `© ${new Date().getFullYear()}, ООО «${appData.meta.name}»`
-  p.overline
-    | © #{new Date().getFullYear()} «Рус-Авто Сервис»
+  p.overline.copr
+    - let y = new Date().getFullYear()
+    | &copy; #[time(datetime= y)= y] «Рус-Авто Сервис»
   //-
     a(href="https://rusauto53.ru/privacy/" target="_blank")
       | Правовая информация
