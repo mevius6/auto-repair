@@ -1,7 +1,7 @@
-//-
-  <!--[if IE]>
-  <![endif]-->
+noscript
+  | #[h2 В вашем браузере необходимо включить JavaScript.]
 
+//- <!--[if IE]><![endif]-->
 .browser-update
   .browser-update__message
     | Пожалуйста, просмотрите этот сайт в современном браузере,
@@ -12,11 +12,19 @@
     |
     .browser-update__brands
       .browser-update__brand
-        a(href="https://www.mozilla.org/ru/firefox/new/" target="_blank" rel="noopener noreferrer" title="Firefox Browser")
+        a(
+          href="https://www.mozilla.org/ru/firefox/new/"
+          target="_blank" rel="noopener noreferrer"
+          title="Firefox Browser"
+        )
           include ../images/fx-logo.svg
       |
       | #[i или ]
       |
       .browser-update__brand
-        a(href="https://brave.com/download/" target="_blank" rel="noopener noreferrer" title="Brave Browser")
+        a(
+          href="https://brave.com/download/"
+          target="_blank" rel="noopener noreferrer"
+          title="Brave Browser"
+        )
           include ../images/brave-logo.svg

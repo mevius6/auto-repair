@@ -146,6 +146,11 @@ body {
   margin-block-start: var(--flow-space, 1em);
 }
 
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
 .browser-update {
   position: fixed;
   top: 0;

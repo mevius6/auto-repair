@@ -67,10 +67,6 @@ function openSubNav(buttonEl) {
     buttonEl.setAttribute('aria-expanded', 'true');
     buttonEl.setAttribute('aria-label', 'Hide');
     navEl.style.display = 'block';
-
-    // [...navEl.childNodes].forEach((item, i) => {
-    //   discloseItem(item, 35, i)
-    // });
   }
 }
 
@@ -82,11 +78,6 @@ function closeSubNav(buttonEl) {
     buttonEl.setAttribute('aria-expanded', 'false');
     buttonEl.setAttribute('aria-label', 'Show');
     navEl.style.display = 'none';
-
-    // [...navEl.childNodes].forEach((item, i) => {
-    //   discloseItem(item, 35, i, { reverse: true })
-    //   item.parentNode.display = 'none';
-    // });
   }
 }
 
@@ -147,9 +138,7 @@ subMenus.forEach(function (subMenu) {
 
 // attach focusout listener to the parent of both
 // the disclosure button and the menu
-let subNavContainers = Array.prototype.slice.call(
-  document.querySelectorAll('#Nav > ul > li')
-);
+let subNavContainers = selectAll('#Nav > ul > li');
 subNavContainers.forEach(function (navContainer) {
   navContainer.addEventListener('focusout', handleNavFocusOut);
 });

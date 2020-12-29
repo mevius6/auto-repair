@@ -100,7 +100,10 @@ nav.nav#Nav
             aria-labelledby=`btnItem0${i+1} item0${i+1}`
             onclick="toggleSubNav(this.id);"
           )
-            svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80")
+            svg(
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"
+              role="img" aria-hidden="true"
+            )
               path(d="M70.3 13.8L40 66.3 9.7 13.8z")
           ul.nav__subitems.flow(id=`SubItem0${i+1}` style={'display': 'none'})
             each subItem, i in navItem.subItems

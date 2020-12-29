@@ -1,5 +1,24 @@
 extends ./pug/page
 
+append head
+  script.
+    var supportsCssVars = function () {
+      var e,
+          t = document.createElement('style');
+      return (
+        (t.innerHTML = 'root: { --tmp-var: bold; }'),
+        document.head.appendChild(t),
+        (e = !!(
+          window.CSS &&
+          window.CSS.supports &&
+          window.CSS.supports('font-weight', 'var(--tmp-var)')
+        )),
+        t.parentNode.removeChild(t),
+        e
+      );
+    };
+    supportsCssVars() || (document.documentElement.className = 'no-css-vars');
+
 block vars
   - let page = appData.pages.index;
   -
@@ -212,12 +231,16 @@ block content
           items: actions,
           ordered: false
         })
-        //- Отправить фото
+        -
+          let label = 'Написать в WhatsApp'
+          let phone = 79216951234
+          let text = encodeURI('Добрый день! Я по поводу…')
+          let link = `https://api.whatsapp.com/send?phone=${phone}&text=${text}`
         a.cta(
-          aria-label="Написать в WhatsApp"
-          href="https://api.whatsapp.com/send?phone=79216951234&text=Добрый%20день!%20Я%20по%20поводу…" target="_blank" rel="noopener noreferrer"
-        )
-          | Написать в WhatsApp
+          href= link
+          target="_blank" rel="noopener noreferrer"
+          aria-label= label
+        )= label
       picture.image-wrapper.grid__end-half
         //- source(data-srcset="./images/2.webp" type="image/webp")
         source(srcset="./images/2.webp" type="image/webp")

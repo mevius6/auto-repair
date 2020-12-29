@@ -78,7 +78,7 @@ nav { width: auto; }
     justify-content: flex-start;
 
     // :where(:not(:hover))
-    :hover > &:not(:hover) { --alpha: 0.75; }
+    :hover > &:not(:hover) a { --alpha: 0.75; }
 
     &:first-child { border-radius: var(--r) var(--r) 0 0; }
     &:last-child { border-radius: 0 0 var(--r) var(--r); }
@@ -94,6 +94,7 @@ nav { width: auto; }
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 1.25px;
+      opacity: var(--alpha, 0);
       align-items: center;
     }
 
