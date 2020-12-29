@@ -1,4 +1,4 @@
-import { selectAll, wait } from './utils';
+import { selectAll, timeout } from './utils';
 
 // header show/hide
 (async () => {
@@ -164,16 +164,6 @@ subNavContainers.forEach(function (navContainer) {
   });
 })();
 
-// function handleAriaExpanded(e) {
-//   let isExpanded = e.currentTarget.getAttribute('aria-expanded') === 'true';
-//
-//   ['aria-expanded', 'aria-pressed'].map((state) => {
-//     e.currentTarget.setAttribute(state, !isExpanded);
-//   });
-//
-//   pNav.dataset.open = !isExpanded;
-// }
-
 // Toggle Menu
 const menuToggle = document.querySelector('.nav__toggle');
 const menu = document.querySelector('.nav__items');
@@ -203,6 +193,6 @@ menuToggle.addEventListener('click', (e) => {
 });
 
 async function deactivate() {
-  await wait(400);
+  await timeout(400);
   menu.classList.remove('is-active');
 }

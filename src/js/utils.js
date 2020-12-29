@@ -179,9 +179,9 @@ function handleAriaExpanded(evt) {
  * https://davidwalsh.name/javascript-promise-tricks
  *
  * @param {*} ms время в миллисекундах
- * @usage await wait(200);
+ * @usage await timeout(200);
  */
-function wait(ms) {
+function timeout(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
@@ -231,5 +231,5 @@ export {
   createNodeWithClass,
   handleAriaExpanded,
   trapFocus,
-  wait,
+  timeout,
 };
