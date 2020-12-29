@@ -126,8 +126,6 @@ function handleNavFocusOut(event) {
 // attach event listeners
 buttons.forEach(function (button) {
   // button.addEventListener('mouseenter', handleButtonClick, false);
-  // button.addEventListener('mouseleave', handleButtonClick, false);
-
   button.addEventListener('click', handleButtonClick);
   button.addEventListener('keydown', handleButtonKeyDown);
 });
