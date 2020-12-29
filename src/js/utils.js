@@ -2,35 +2,63 @@ const UA = navigator.userAgent;
 const root = document.documentElement;
 const body = document.body;
 
-const MathUtils = {
-  map: (x, a, b, c, d) => ((x - a) * (d - c)) / (b - a) + c,
-  // линейная интерполяция
-  lerp: (min, max, val) => min * (1 - val) + max * val,
-  // расстояние между двумя точками
-  distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
-  // случайное число
-  getRandomNum: (min, max) => Math.floor(Math.random() * (max - min + 1) + min),
-};
+function checkBrowser() {
+  let UA = navigator.userAgent;
+  let browser;
 
-const calcWinsize = () => {
-  return { ww: window.innerWidth, wh: window.innerHeight };
-};
+  let chromeAgent = UA.includes('Chrome');
+  let IExplorerAgent = UA.includes('MSIE') || UA.includes('rv:');
+  let firefoxAgent = UA.includes('Firefox');
+  let safariAgent = UA.includes('Safari');
+  if (chromeAgent && safariAgent) safariAgent = false;
+  let operaAgent = UA.includes('OP');
+  if (chromeAgent && operaAgent) chromeAgent = false;
 
-const getMousePos = (e) => {
-  let posx = 0;
-  let posy = 0;
+  if (safariAgent) browser = 'Safari';
+  if (chromeAgent) browser = 'Chrome';
+  if (IExplorerAgent) browser = 'IE';
+  if (operaAgent) browser = 'Opera';
+  if (firefoxAgent) browser = 'Firefox';
 
-  if (!e) e = window.event;
-  if (e.pageX || e.pageY) {
-    posx = e.pageX;
-    posy = e.pageY;
-  } else if (e.clientX || e.clientY) {
-    posx = e.clientX + body.scrollLeft + root.scrollLeft;
-    posy = e.clientY + body.scrollTop + root.scrollTop;
+  return browser;
+}
+
+function checkSystem() {
+  let AV = navigator.appVersion;
+  let os;
+
+  if (AV.includes('Win')) os = 'Windows';
+  if (AV.includes('Mac')) os = 'macOS';
+  if (AV.includes('X11')) os = 'UNIX';
+  if (AV.includes('Linux')) os = 'Linux';
+
+  return os;
+}
+
+const isMobileDevice = () => {
+  let hasTouchScreen = false;
+  if ('maxTouchPoints' in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+  } else if ('msMaxTouchPoints' in navigator) {
+    hasTouchScreen = navigator.msMaxTouchPoints > 0;
+  } else {
+    let mql = window.matchMedia && matchMedia('(pointer:coarse)');
+    if (mql && mql.media === '(pointer:coarse)') {
+      hasTouchScreen = !!mql.matches;
+    } else if ('orientation' in window) {
+      hasTouchScreen = true;
+    } else {
+      hasTouchScreen = (
+        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
+      );
+    }
   }
 
-  return { x: posx, y: posy };
-};
+  return new Promise((resolve, reject) => {
+    hasTouchScreen ? resolve() : reject();
+  });
+}
 
 /**
  * https://github.com/ykob/tplh.net-2019/blob/master/src/utils/checkWebpFeature.js
@@ -62,30 +90,35 @@ const checkWebpFeature = (feature) => {
   });
 };
 
-const isMobileDevice = () => {
-  let hasTouchScreen = false;
-  if ('maxTouchPoints' in navigator) {
-    hasTouchScreen = navigator.maxTouchPoints > 0;
-  } else if ('msMaxTouchPoints' in navigator) {
-    hasTouchScreen = navigator.msMaxTouchPoints > 0;
-  } else {
-    let mql = window.matchMedia && matchMedia('(pointer:coarse)');
-    if (mql && mql.media === '(pointer:coarse)') {
-      hasTouchScreen = !!mql.matches;
-    } else if ('orientation' in window) {
-      hasTouchScreen = true;
-    } else {
-      hasTouchScreen = (
-        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
-      );
-    }
+const MathUtils = {
+  map: (x, a, b, c, d) => ((x - a) * (d - c)) / (b - a) + c,
+  // линейная интерполяция
+  lerp: (min, max, val) => min * (1 - val) + max * val,
+  // расстояние между двумя точками
+  distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
+  // случайное число
+  getRandomNum: (min, max) => Math.floor(Math.random() * (max - min + 1) + min),
+};
+
+const calcWinsize = () => {
+  return { ww: window.innerWidth, wh: window.innerHeight };
+};
+
+const getMousePos = (e) => {
+  let posx = 0;
+  let posy = 0;
+
+  if (!e) e = window.event;
+  if (e.pageX || e.pageY) {
+    posx = e.pageX;
+    posy = e.pageY;
+  } else if (e.clientX || e.clientY) {
+    posx = e.clientX + body.scrollLeft + root.scrollLeft;
+    posy = e.clientY + body.scrollTop + root.scrollTop;
   }
 
-  return new Promise((resolve, reject) => {
-    hasTouchScreen ? resolve() : reject();
-  });
-}
+  return { x: posx, y: posy };
+};
 
 // https://thisthat.dev/natural-width-vs-width/
 // const getNaturalWidth = (url) => {
@@ -142,45 +175,14 @@ function handleAriaExpanded(evt) {
 }
 
 /**
+ * https://developers.google.com/web/fundamentals/primers/async-functions#async_return_values
  * https://davidwalsh.name/javascript-promise-tricks
+ *
  * @param {*} ms время в миллисекундах
- * @usage await waitForTime(200);
+ * @usage await wait(200);
  */
-function waitForTime(ms) {
+function wait(ms) {
   return new Promise(r => setTimeout(r, ms));
-}
-
-function checkBrowser() {
-  let UA = navigator.userAgent;
-  let browser;
-
-  let chromeAgent = UA.includes('Chrome');
-  let IExplorerAgent = UA.includes('MSIE') || UA.includes('rv:');
-  let firefoxAgent = UA.includes('Firefox');
-  let safariAgent = UA.includes('Safari');
-  if (chromeAgent && safariAgent) safariAgent = false;
-  let operaAgent = UA.includes('OP');
-  if (chromeAgent && operaAgent) chromeAgent = false;
-
-  if (safariAgent) browser = 'Safari';
-  if (chromeAgent) browser = 'Chrome';
-  if (IExplorerAgent) browser = 'IE';
-  if (operaAgent) browser = 'Opera';
-  if (firefoxAgent) browser = 'Firefox';
-
-  return browser;
-}
-
-function checkSystem() {
-  let AV = navigator.appVersion;
-  let os;
-
-  if (AV.includes('Win')) os = 'Windows';
-  if (AV.includes('Mac')) os = 'macOS';
-  if (AV.includes('X11')) os = 'UNIX';
-  if (AV.includes('Linux')) os = 'Linux';
-
-  return os;
 }
 
 // https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element
@@ -211,40 +213,23 @@ function trapFocus(element) {
   });
 }
 
-async function supportsCssVars() {
-  let e,
-      t = document.createElement('style');
-  return (
-    (t.innerHTML = 'root: { --tmp-var: bold; }'),
-    document.head.appendChild(t),
-    (e = !!(
-      window.CSS &&
-      window.CSS.supports &&
-      window.CSS.supports('font-weight', 'var(--tmp-var)')
-    )),
-    t.parentNode.removeChild(t),
-    e
-  );
-}
-
 export {
+  checkBrowser,
+  checkSystem,
+  isMobileDevice,
+  checkWebpFeature,
   MathUtils,
   calcWinsize,
   getMousePos,
-  isMobileDevice,
-  checkBrowser,
-  checkSystem,
-  checkWebpFeature,
+  getWidth,
+  getHeight,
   select,
   selectAll,
   findByData,
-  getWidth,
-  getHeight,
   createNode,
   appendNode,
   createNodeWithClass,
   handleAriaExpanded,
-  waitForTime,
   trapFocus,
-  supportsCssVars
+  wait,
 };
