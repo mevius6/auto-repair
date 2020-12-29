@@ -24,10 +24,6 @@ const doc = document,
 
 root.setAttribute('data-theme-style', 'dark');
 
-// supportsCssVars()
-//   .then(() => root.classList.add('css-vars'))
-//   .catch(() => root.classList.add('no-css-vars'));
-
 let imageFormat = '';
 checkWebpFeature('lossy')
   .then(() => {

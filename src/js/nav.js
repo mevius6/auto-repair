@@ -1,4 +1,4 @@
-import { selectAll, waitForTime } from './utils';
+import { selectAll, wait } from './utils';
 
 // header show/hide
 (async () => {
@@ -134,6 +134,9 @@ function handleNavFocusOut(event) {
 
 // attach event listeners
 buttons.forEach(function (button) {
+  // button.addEventListener('mouseenter', handleButtonClick, false);
+  // button.addEventListener('mouseleave', handleButtonClick, false);
+
   button.addEventListener('click', handleButtonClick);
   button.addEventListener('keydown', handleButtonKeyDown);
 });
@@ -200,6 +203,6 @@ menuToggle.addEventListener('click', (e) => {
 });
 
 async function deactivate() {
-  await waitForTime(400);
+  await wait(400);
   menu.classList.remove('is-active');
 }
